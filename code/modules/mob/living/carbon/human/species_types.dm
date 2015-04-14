@@ -3,7 +3,7 @@
 */
 
 /datum/species/human
-	name = "Human"
+	name = "human"
 	id = "human"
 	roundstart = 1
 	//specflags = list(EYECOLOR,HAIR,FACEHAIR,LIPS)

@@ -1,5 +1,9 @@
 // This code handles different species in the game.
 
+#define SPECIES_LAYER			24
+#define BODY_LAYER				23
+#define HAIR_LAYER				9
+
 #define TINT_IMPAIR 2
 #define TINT_BLIND 3
 
@@ -1094,6 +1098,13 @@
 	if((H.status_flags & GODMODE))
 		return
 
+	var/datum/vore_organ/VD=H.get_last_organ_in()
+
+	if(VD&&VD.digestion_factor)
+		H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head")
+	if(VD&&VD.tf_factor)
+		H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head")
+
 	if(!breath || (breath.total_moles() == 0))
 		if(H.reagents.has_reagent("epinephrine"))
 			return
@@ -1322,6 +1333,10 @@
 		H.fire_stacks = 0
 		H.AddLuminosity(-3)
 		H.update_fire()
+
+#undef SPECIES_LAYER
+#undef BODY_LAYER
+#undef HAIR_LAYER
 
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS

@@ -698,6 +698,7 @@ Please contact me on #coderbus IRC. ~Carnie x
 #undef BELT_LAYER
 #undef SUIT_STORE_LAYER
 #undef BACK_LAYER
+#undef TAIL_LAYER
 #undef HAIR_LAYER
 #undef HEAD_LAYER
 #undef HANDCUFF_LAYER

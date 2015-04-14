@@ -43,7 +43,7 @@ Made by Xhuis
 	var/list/datum/mind/shadows = list()
 	var/list/datum/mind/thralls = list()
 	var/list/shadow_objectives = list()
-	var/required_thralls = 15 //How many thralls are needed (hardcoded for now)
+	var/required_thralls = 10 //How many thralls are needed (hardcoded for now)
 	var/shadowling_ascended = 0 //If at least one shadowling has ascended
 	var/shadowling_dead = 0 //is shadowling kill
 
@@ -64,8 +64,8 @@ Made by Xhuis
 	name = "shadowling"
 	config_tag = "shadowling"
 	antag_flag = BE_SHADOWLING
-	required_players = 30
-	required_enemies = 2
+	required_players = 10
+	required_enemies = 1
 	recommended_enemies = 2
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")

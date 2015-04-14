@@ -198,10 +198,10 @@ datum/preferences
 				dat += "<table width='100%'><tr><td width='24%' valign='top'>"
 
 				if(config.mutant_races)
-					dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
+					dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.id]</a><BR>"
 					dat += "<b>Human Tail:</b><a href='?_src_=prefs;preference=mutant_tail;task=input'>[mutant_tail]</a><BR>"
 					dat += "<b>Taur:</b><a href='?_src_=prefs;preference=be_taur;task=input'>[be_taur ? "Yes" : "No"]</a>"
-					if(!kpcode_cantaur(pref_species.name))
+					if(!kpcode_cantaur(pref_species.id))
 						dat += " (not available for [pref_species.id])"
 					dat += "<BR>"
 					if(special_color[1])
@@ -275,7 +275,7 @@ datum/preferences
 
 					dat += "</td>"
 
-			 	/*
+
 				if(MUTCOLORS in pref_species.specflags)
 
 					dat += "<td valign='top' width='21%'>"
@@ -285,7 +285,7 @@ datum/preferences
 					dat += "<span style='border: 1px solid #161616; background-color: #[mutant_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a><BR>"
 
 					dat += "</td>"
-					*/
+
 
 				dat += "</tr></table>"
 
@@ -771,10 +771,9 @@ datum/preferences
 
 					if("species")
 
-						var/result = input(user, "Select a species", "Species Selection") as null|anything in roundstart_species
-
+						var/result = input(user, "Select a species", "Species Selection") as null|anything in kpcode_race_getlist(ckey)
 						if(result)
-							var/newtype = roundstart_species[result]
+							var/newtype = species_list[result]
 							pref_species = new newtype()
 							//if(mutant_color == "#000")
 							//	mutant_color = pref_species.default_color
