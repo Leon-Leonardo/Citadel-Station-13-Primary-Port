@@ -490,11 +490,18 @@ var/list/slot_equipment_priority = list( \
 	set name = "Respawn"
 	set category = "OOC"
 
-	if (!( abandon_allowed ))
+	if (!( abandon_allowed ) && !is_whitelisted(ckey))
 		return
 	if ((stat != 2 || !( ticker )))
 		usr << "<span class='boldnotice'>You must be dead to use this!</span>"
 		return
+
+	var/was_observing = 0
+	if(istype(src,/mob/dead/observer))
+		var/mob/dead/observer/spook=src
+		was_observing=spook.started_as_observer
+	log_game("[usr.name]/[usr.key] used respawn.[was_observing ? "(Was Not Playing)" : "(Was Playing)"]")
+	message_admins("[usr.name]/[usr.key] is respawning. [was_observing ? "(Was Not Playing)" : "(Was Playing)"]")
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 

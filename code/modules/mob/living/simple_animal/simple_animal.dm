@@ -254,7 +254,7 @@
 	return 0
 
 /mob/living/simple_animal/adjustFireLoss(var/amount)
-	adjustBruteLoss(amount)
+//	adjustBruteLoss(amount)
 
 /mob/living/simple_animal/adjustStaminaLoss(var/amount)
 	return

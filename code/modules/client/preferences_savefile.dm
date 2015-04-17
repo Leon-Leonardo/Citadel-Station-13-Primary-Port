@@ -234,7 +234,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	eye_color		= sanitize_hexcolor(eye_color, 3, 0)
 	//if(eye_het)
 	//	eye_het		= sanitize_hexcolor(eye_het, 3, 0)
-	special_color=sanitize_colour_list(special_color)
+	special_color	= sanitize_colour_list(special_color)
 	skin_tone		= sanitize_inlist(skin_tone, skin_tones)
 	backbag			= sanitize_integer(backbag, 1, backbaglist.len, initial(backbag))
 	mutant_tail 	= sanitize_text(mutant_tail, initial(mutant_tail))

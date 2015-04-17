@@ -119,6 +119,7 @@ datum/preferences
 	blood_type = random_blood_type()
 	ooccolor = normal_ooc_colour
 	if(istype(C))
+		ckey=C.ckey
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
 			unlock_content = C.IsByondMember()
@@ -276,7 +277,7 @@ datum/preferences
 					dat += "</td>"
 
 
-				if(MUTCOLORS in pref_species.specflags)
+				/*if(MUTCOLORS in pref_species.specflags)
 
 					dat += "<td valign='top' width='21%'>"
 
@@ -284,7 +285,7 @@ datum/preferences
 
 					dat += "<span style='border: 1px solid #161616; background-color: #[mutant_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a><BR>"
 
-					dat += "</td>"
+					dat += "</td>"*/
 
 
 				dat += "</tr></table>"
@@ -962,8 +963,8 @@ datum/preferences
 				character.dna.species = new pref_species.type()
 			else
 				character.dna.species = new /datum/species/human()
-			character.dna.mutant_color = mutant_color
-			character.update_mutcolor()
+			//character.dna.mutant_color = mutant_color
+			//character.update_mutcolor()
 			if(mutant_tail != "none" && config.mutant_races)
 				character.dna.mutanttail = mutant_tail
 			if(mutant_wing != "none" && config.mutant_races)

@@ -287,11 +287,11 @@
 				if("usewhitelist")
 					config.usewhitelist = 1
 				if("narkyjoblist")
-					config.narkyjoblist=1
+					config.narkyjoblist = 1
 				if("narkypaniclist")
-					config.narkypaniclist=1
+					config.narkypaniclist = 1
 				if("narkyspooky")
-					config.narkyspooky=1
+					config.narkyspooky = 1
 				if("allow_metadata")
 					config.allow_Metadata = 1
 				if("kick_inactive")
@@ -485,7 +485,7 @@
 				if("assistant_cap")
 					config.assistant_cap			= text2num(value)
 				if("starlight")
-					config.starlight			= 1
+					config.starlight				= 1
 				if("grey_assistants")
 					config.grey_assistants			= 1
 				if("no_summon_guns")
@@ -496,6 +496,9 @@
 					config.no_summon_events			= 1
 				else
 					diary << "Unknown setting in configuration: '[name]'"
+
+		else if(type == "whitelist")
+			whitelist_keys.Add(name)
 
 	fps = round(fps)
 	if(fps <= 0)

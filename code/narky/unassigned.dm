@@ -207,8 +207,8 @@ var/const/VORE_SIZEDIFF_ANY=5
 					//updateappearance(owner)
 					owner.update_body()
 					continue //hopefully won't break much
-				//if(oxygen)
-					//M.oxyloss=0//Temp fix
+				if(oxygen)
+					M.oxyloss=0//Temp fix
 				if(SSair.times_fired%3==1)
 					M.vore_transform_index+=tf_factor
 					if(M.vore_transform_index>=100)
