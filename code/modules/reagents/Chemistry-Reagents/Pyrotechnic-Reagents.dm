@@ -21,6 +21,12 @@ datum/reagent/thermite/on_mob_life(var/mob/living/M as mob)
 	M.adjustFireLoss(1)
 	..()
 
+datum/reagent/nitroglycerin
+	name = "Nitroglycerin"
+	id = "nitroglycerin"
+	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
+	color = "#808080" // rgb: 128, 128, 128
+
 /datum/reagent/stabilizing_agent
 	name = "Stabilizing Agent"
 	id = "stabilizing_agent"
@@ -44,18 +50,20 @@ datum/reagent/thermite/on_mob_life(var/mob/living/M as mob)
 /datum/reagent/clf3/reaction_turf(var/turf/simulated/T, var/volume)
 	if(istype(T, /turf/simulated/floor/plating))
 		var/turf/simulated/floor/plating/F = T
-		if(prob(1))
+		if(prob(1 + F.burnt + 5*F.broken)) //broken or burnt plating is more susceptible to being destroyed
 			F.ChangeTurf(/turf/space)
 	if(istype(T, /turf/simulated/floor/))
 		var/turf/simulated/floor/F = T
 		if(prob(volume/10))
 			F.make_plating()
+		else if(prob(volume))
+			F.burn_tile()
 		if(istype(F, /turf/simulated/floor/))
 			new /obj/effect/hotspot(F)
 	if(istype(T, /turf/simulated/wall/))
 		var/turf/simulated/wall/W = T
 		if(prob(volume/10))
-			W.ChangeTurf(/turf/simulated/floor)
+			W.ChangeTurf(/turf/simulated/floor/plating)
 
 /datum/reagent/clf3/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
 	if(method == TOUCH && isliving(M))
@@ -88,7 +96,7 @@ datum/reagent/thermite/on_mob_life(var/mob/living/M as mob)
 /datum/reagent/blackpowder/on_ex_act()
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
-	e.set_up(round(volume/8, 1), location, 1, 4, message = 0)
+	e.set_up(1 + round(volume/6, 1), location, 0, 0, message = 0)
 	e.start()
 	holder.clear_reagents()
 
