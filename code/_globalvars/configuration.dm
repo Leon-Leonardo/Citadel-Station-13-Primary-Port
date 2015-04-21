@@ -27,9 +27,9 @@ var/global/comms_allowed = 0 //By default, the server does not allow messages to
 
 
 //This was a define, but I changed it to a variable so it can be changed in-game.(kept the all-caps definition because... code...) -Errorage
-var/MAX_EX_DEVESTATION_RANGE = 3
-var/MAX_EX_HEAVY_RANGE = 7
-var/MAX_EX_LIGHT_RANGE = 14
+var/MAX_EX_DEVESTATION_RANGE = 32
+var/MAX_EX_HEAVY_RANGE = 64
+var/MAX_EX_LIGHT_RANGE = 128
 var/MAX_EX_FLASH_RANGE = 14
 var/MAX_EX_FLAME_RANGE = 14
 
