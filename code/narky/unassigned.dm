@@ -1876,7 +1876,7 @@ var/list/traitor_test_list = null
 	VP.ShowChoices(src)
 
 /mob/living/proc/underwear_toggle()
-	set name = "Toggle Underwear"
+	set name = "Force Update"
 	set category = "Vore"
 	if(istype(src,/mob/living/carbon/human))
 		var/mob/living/carbon/human/humz=src
