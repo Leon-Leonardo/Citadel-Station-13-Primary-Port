@@ -61,5 +61,5 @@
 	icon_state = "syndi_cakes"
 	desc = "An extremely moist snack cake that tastes just as good after being nuked."
 	trash = /obj/item/trash/syndi_cakes
-	list_reagents = list("nutriment" = 4, "doctorsdelight" = 5)
+	list_reagents = list("nutriment" = 4, "doctorsdelight" = 2)
 	filling_color = "#F5F5DC"
