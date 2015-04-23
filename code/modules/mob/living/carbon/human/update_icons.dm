@@ -585,6 +585,7 @@ Please contact me on #coderbus IRC. ~Carnie x
 		overlays_standing[BACK_LAYER] = standing
 
 	apply_overlay(BACK_LAYER)
+	src.update_hair()
 
 
 
