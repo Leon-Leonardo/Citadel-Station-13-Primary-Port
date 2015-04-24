@@ -79,6 +79,11 @@ Please contact me on #coderbus IRC. ~Carnie x
 #define TOTAL_LAYERS			27		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
 //////////////////////////////////
 
+
+//I commented out pretty everything related to mutant_parts to fix the color layer issue. - Jay [Temp]
+
+
+
 /mob/living/carbon/human
 	var/list/overlays_standing[TOTAL_LAYERS]
 
@@ -156,9 +161,11 @@ Please contact me on #coderbus IRC. ~Carnie x
 	if(dna && !(disabilities & HUSK))
 		dna.species.update_color(src)
 
+/*
 /mob/living/carbon/human/proc/update_mutant_bodyparts()
 	if(dna)
 		dna.species.handle_mutant_bodyparts(src)
+		*/
 
 
 //mob/living/carbon/human/proc/update_body()
@@ -528,8 +535,8 @@ Please contact me on #coderbus IRC. ~Carnie x
 			var/obj/item/clothing/suit/S = wear_suit
 			standing.overlays	+= image("icon"='icons/effects/blood.dmi', "icon_state"="[S.blood_overlay_type]blood")
 
-	src.update_hair()
-	src.update_mutant_bodyparts()
+	//src.update_hair()
+	//src.update_mutant_bodyparts()
 
 	apply_overlay(SUIT_LAYER)
 
@@ -564,7 +571,8 @@ Please contact me on #coderbus IRC. ~Carnie x
 		if(wear_mask.blood_DNA && !istype(wear_mask, /obj/item/clothing/mask/cigarette))
 			standing.overlays	+= image("icon"='icons/effects/blood.dmi', "icon_state"="maskblood")
 
-	update_mutant_bodyparts()
+	//update_mutant_bodyparts()
+	update_hair()
 
 	apply_overlay(FACEMASK_LAYER)
 

@@ -1,6 +1,6 @@
 datum
 	species
-		specflags = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
+		//specflags = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
 		var/generic="something"
 		var/adjective="unknown"
 		var/restricted=0 //Set to 1 to not allow anyone to choose it, 2 to hide it from the DNA scanner, and text to restrict it to one person
@@ -227,6 +227,11 @@ datum
 			generic="golem"
 			adjective="rocky"
 			restricted=2
+		capra
+			name="caprine"
+			id="capra"
+			generic="goat"
+			adjective="irratable"
 
 /*var/list/kpcode_race_list
 
