@@ -231,13 +231,13 @@ var/const/VORE_SIZEDIFF_ANY=5
 						if(healing_factor&&owner.nutrition>100)
 
 							if(M.getOxyLoss() )//&& prob(60))
-								M.adjustOxyLoss(-1)
+								M.adjustOxyLoss(-2)
 								//if(prob(50))owner.nutrition-=1
 							if(M.getBruteLoss() )//&& prob(60))
 								M.heal_organ_damage(1,0)
 								owner.nutrition-=1
 							if(M.getFireLoss() )//&& prob(60))
-								M.heal_organ_damage(0,2)
+								M.heal_organ_damage(0,1)
 								owner.nutrition-=1
 							if(M.getToxLoss() )//&& prob(60))
 								M.adjustToxLoss(-1)
