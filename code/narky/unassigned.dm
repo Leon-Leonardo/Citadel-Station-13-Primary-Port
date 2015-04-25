@@ -325,6 +325,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 					extra_info=0
 					break
 		if(source==FLAVOUR_DIGEST)
+			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s stomach and a lump dissipates. Someone must have digested.</span>")
 			prey<<"<span class='warning'>You gurgle away inside [owner].</span>"
 		else if(source==FLAVOUR_RELEASE)
 			var/live_people=0
@@ -610,6 +611,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="femjuice"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
+			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s stomach and a lump dissipates. Someone must have digested.</span>")
 			prey<<"<span class='warning'>You gurgle away inside [owner].</span>"
 		else if(source==FLAVOUR_RELEASE)
 			if(istype(owner.loc,/turf))
