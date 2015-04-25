@@ -325,7 +325,6 @@ var/const/VORE_SIZEDIFF_ANY=5
 					extra_info=0
 					break
 		if(source==FLAVOUR_DIGEST)
-			owner<<"You hear gurgling from within you, and the bulge in your belly is squishier. Someone must have digested."
 			prey<<"<span class='warning'>You gurgle away inside [owner].</span>"
 		else if(source==FLAVOUR_RELEASE)
 			var/live_people=0
@@ -508,7 +507,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="semen"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner<<"Your cock throbs. Someone must have turned into cum."
+			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s crotch. Someone must have digested.</span>")
 			prey<<"<span class='warning'>You turn into [owner] [pick("spooge","cum","semen","batter","seed")].</span>"
 		else if(source==FLAVOUR_RELEASE)
 			digestion_count+=owner.vore_balls_datum.digestion_count
@@ -594,7 +593,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 			return ..()
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner<<"Your balls swell. Someone must have turned into cum."
+			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s crotch. Someone must have digested.</span>")
 			prey<<"<span class='warning'>You turn into [owner] [pick("spooge","cum","semen","batter","seed")].</span>"
 		else if(source==FLAVOUR_ESCAPE&&prey)
 			owner.visible_message("<span class='notice'>[prey] slips out of [owner]'s cock.</span>")
@@ -611,7 +610,6 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="femjuice"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner<<"You hear gurgling from within you, and the bulge in your belly is squishier. Someone must have turned into femjuice."
 			prey<<"<span class='warning'>You gurgle away inside [owner].</span>"
 		else if(source==FLAVOUR_RELEASE)
 			if(istype(owner.loc,/turf))
@@ -662,7 +660,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="milk"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner<<"Your breasts jiggle. Someone must have turned into milk."
+			owner.visible_message("<span class='danger'>[owner]'s breasts jiggle. Someone must have turned into milk.</span>")
 			prey<<"<span class='warning'>You turn into [owner]'s milk.</span>"
 		else if(source==FLAVOUR_RELEASE)
 			if(istype(owner.loc,/turf))
@@ -754,7 +752,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 /datum/vore_organ/tail
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner<<"Your tail gurgles and a lump dissipates. Someone must have digested."
+			owner.visible_message("<span class='danger'>[owner]'s tail gurgles and a lump on it dissipates. Someone must have digested..</span>")
 			prey<<"<span class='warning'>You gurgle away inside [owner]'s tail.</span>"
 		else if(source==FLAVOUR_RELEASE)
 			var/live_people=0
