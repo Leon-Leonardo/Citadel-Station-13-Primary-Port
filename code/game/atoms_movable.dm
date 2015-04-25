@@ -10,6 +10,7 @@
 	var/verb_say = "says"
 	var/verb_ask = "asks"
 	var/verb_exclaim = "exclaims"
+	var/verb_whimsies = "whimsies"
 	var/verb_yell = "yells"
 	var/inertia_dir = 0
 	var/pass_flags = 0
