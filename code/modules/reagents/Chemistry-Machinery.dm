@@ -190,7 +190,7 @@
 	amount = 5
 	recharge_delay = 30
 	dispensable_reagents = list()
-	var/list/special_reagents = list(list("hydrogen", "oxygen", "silicon", "phosphorus", "sulfur", "carbon", "nitrogen", "water"),
+	var/list/special_reagents = list(list("hydrogen", "oxygen", "silicon", "phosphorus", "sulfur", "carbon", "nitrogen", "water", "vorechem"),
 						 		list("lithium", "sugar", "sacid", "copper", "mercury", "sodium","iodine","bromine"),
 								list("ethanol", "chlorine", "potassium", "aluminium", "radium", "fluorine", "iron", "fuel","silver","stable_plasma"))
 
