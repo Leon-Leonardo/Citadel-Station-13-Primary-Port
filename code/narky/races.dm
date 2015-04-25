@@ -232,6 +232,22 @@ datum
 			id="capra"
 			generic="goat"
 			adjective="irratable"
+		zombie
+			//name="zombie"
+			id="zombie"
+			generic="zombie"
+			adjective="rotten"
+		cosmetic_zombie
+			//name="zombie"
+			id="zombie"
+			generic="zombie"
+			adjective="morerotten"
+		abductor
+			//name="abductor"
+			id="abductor"
+			generic="abductor"
+			adjective="spooky"
+
 
 /*var/list/kpcode_race_list
 

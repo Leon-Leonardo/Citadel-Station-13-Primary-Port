@@ -52,7 +52,7 @@ var/datum/subsystem/events/SSevent
 //decides which world.time we should select another random event at.
 /datum/subsystem/events/proc/reschedule()
 	scheduled = world.time + rand(frequency_lower, max(frequency_lower,frequency_upper))
-	/*if(world.time >= 36000 && world.time < 72000) //More than an hour has passed
+	if(world.time >= 36000 && world.time < 72000) //More than an hour has passed
 		if(frequency_lower>2000)
 			frequency_lower-=250
 		if(frequency_upper>6000)
@@ -78,9 +78,9 @@ var/datum/subsystem/events/SSevent
 		frequency_lower=1000
 		frequency_upper=1500
 		//if ((!( ticker ) || emergency_shuttle.location))
-		if(emergency_shuttle.endtime&&emergency_shuttle.direction==1)
+		if(SSshuttle.emergency.mode == SHUTTLE_DOCKED || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 			return
-		emergency_shuttle.incall(0.5, emergency_reason=" The station is under abnormal status, and the shuttle has been auto-called.")*/
+		SSshuttle.emergency.request(0.5, emergency_reason=" The station is under abnormal status, and the shuttle has been auto-called.")
 		//priority_announce("The emergency shuttle has been called due to the station's abnormal status. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.", null, 'sound/AI/shuttlecalled.ogg', "Priority")
 
 //selects a random event based on whether it can occur and it's 'weight'(probability)

@@ -66,15 +66,15 @@ Please contact me on #coderbus IRC. ~Carnie x
 #define BELT_LAYER				13		//Possible make this an overlay of somethign required to wear a belt?
 #define SUIT_STORE_LAYER		12
 #define BACK_LAYER				11
-#define HAIR_LAYER				10		//TODO: make part of head layer?
-#define FACEMASK_LAYER			9
+#define HAIR_LAYER				9		//TODO: make part of head layer?
+#define FACEMASK_LAYER			10
 #define HEAD_LAYER				8
 #define HANDCUFF_LAYER			7
 #define LEGCUFF_LAYER			6
-#define L_HAND_LAYER			4
-#define R_HAND_LAYER			3		//Having the two hands seperate seems rather silly, merge them together? It'll allow for code to be reused on mobs with arbitarily many hands
-#define BODY_FRONT_LAYER		2
-#define TAIL_LAYER				5
+#define L_HAND_LAYER			5
+#define R_HAND_LAYER			4		//Having the two hands seperate seems rather silly, merge them together? It'll allow for code to be reused on mobs with arbitarily many hands
+#define BODY_FRONT_LAYER		3
+#define TAIL_LAYER				2
 #define FIRE_LAYER				1		//If you're on fire
 #define TOTAL_LAYERS			27		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
 //////////////////////////////////
