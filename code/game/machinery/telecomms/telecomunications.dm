@@ -92,6 +92,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			"verb_say" = signal.data["verb_say"],
 			"verb_ask" = signal.data["verb_ask"],
 			"verb_exclaim" = signal.data["verb_exclaim"],
+			"verb_whimsies" = signal.data["verb_whimsies"],
 			"verb_yell" = signal.data["verb_yell"]
 			)
 
