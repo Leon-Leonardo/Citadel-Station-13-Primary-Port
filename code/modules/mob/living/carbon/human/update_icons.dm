@@ -66,18 +66,23 @@ Please contact me on #coderbus IRC. ~Carnie x
 #define BELT_LAYER				13		//Possible make this an overlay of somethign required to wear a belt?
 #define SUIT_STORE_LAYER		12
 #define BACK_LAYER				11
-#define HAIR_LAYER				10		//TODO: make part of head layer?
-#define FACEMASK_LAYER			9
+#define HAIR_LAYER				9		//TODO: make part of head layer?
+#define FACEMASK_LAYER			10
 #define HEAD_LAYER				8
 #define HANDCUFF_LAYER			7
 #define LEGCUFF_LAYER			6
-#define L_HAND_LAYER			4
-#define R_HAND_LAYER			3		//Having the two hands seperate seems rather silly, merge them together? It'll allow for code to be reused on mobs with arbitarily many hands
-#define BODY_FRONT_LAYER		2
-#define TAIL_LAYER				5
+#define L_HAND_LAYER			5
+#define R_HAND_LAYER			4		//Having the two hands seperate seems rather silly, merge them together? It'll allow for code to be reused on mobs with arbitarily many hands
+#define BODY_FRONT_LAYER		3
+#define TAIL_LAYER				2
 #define FIRE_LAYER				1		//If you're on fire
 #define TOTAL_LAYERS			27		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
 //////////////////////////////////
+
+
+//I commented out pretty everything related to mutant_parts to fix the color layer issue. - Jay [Temp]
+
+
 
 /mob/living/carbon/human
 	var/list/overlays_standing[TOTAL_LAYERS]
@@ -156,9 +161,11 @@ Please contact me on #coderbus IRC. ~Carnie x
 	if(dna && !(disabilities & HUSK))
 		dna.species.update_color(src)
 
+/*
 /mob/living/carbon/human/proc/update_mutant_bodyparts()
 	if(dna)
 		dna.species.handle_mutant_bodyparts(src)
+		*/
 
 
 //mob/living/carbon/human/proc/update_body()
@@ -528,8 +535,8 @@ Please contact me on #coderbus IRC. ~Carnie x
 			var/obj/item/clothing/suit/S = wear_suit
 			standing.overlays	+= image("icon"='icons/effects/blood.dmi', "icon_state"="[S.blood_overlay_type]blood")
 
-	src.update_hair()
-	src.update_mutant_bodyparts()
+	//src.update_hair()
+	//src.update_mutant_bodyparts()
 
 	apply_overlay(SUIT_LAYER)
 
@@ -564,7 +571,8 @@ Please contact me on #coderbus IRC. ~Carnie x
 		if(wear_mask.blood_DNA && !istype(wear_mask, /obj/item/clothing/mask/cigarette))
 			standing.overlays	+= image("icon"='icons/effects/blood.dmi', "icon_state"="maskblood")
 
-	update_mutant_bodyparts()
+	//update_mutant_bodyparts()
+	update_hair()
 
 	apply_overlay(FACEMASK_LAYER)
 
@@ -585,6 +593,7 @@ Please contact me on #coderbus IRC. ~Carnie x
 		overlays_standing[BACK_LAYER] = standing
 
 	apply_overlay(BACK_LAYER)
+	src.update_hair()
 
 
 

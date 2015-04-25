@@ -31,6 +31,7 @@
 	roundstart = 1
 	//specflags = list(MUTCOLORS,EYECOLOR,LIPS)
 	//mutant_bodyparts = list("tail", "snout")
+	specflags = list(EYECOLOR,HAIR)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -156,7 +157,7 @@
 	darksight = 3
 	invis_sight = SEE_INVISIBLE_LEVEL_ONE
 	//specflags = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
-	specflags = list(EYECOLOR,HAIR, NOBLOOD)
+	specflags = list(EYECOLOR,NOBLOOD)
 	//hair_color = "mutcolor"
 	hair_alpha = 150
 	ignored_by = list(/mob/living/simple_animal/slime)
