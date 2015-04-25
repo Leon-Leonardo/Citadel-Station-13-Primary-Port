@@ -788,8 +788,8 @@ var/const/VORE_SIZEDIFF_ANY=5
 
 
 //Procs handling vore.
-/mob/living/simple_animal/adjustFireLoss(var/num)
-	health-=min(num,2)
+//mob/living/simple_animal/adjustFireLoss(var/num)
+//	health-=min(num,2)
 
 
 /mob/living/proc/get_shoes()
