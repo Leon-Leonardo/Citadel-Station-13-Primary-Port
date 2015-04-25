@@ -237,16 +237,19 @@ datum
 			id="zombie"
 			generic="zombie"
 			adjective="rotten"
+			restricted=2
 		cosmetic_zombie
 			//name="zombie"
 			id="zombie"
 			generic="zombie"
 			adjective="morerotten"
+			restricted=2
 		abductor
 			//name="abductor"
 			id="abductor"
 			generic="abductor"
 			adjective="spooky"
+			restricted=2
 
 
 /*var/list/kpcode_race_list
