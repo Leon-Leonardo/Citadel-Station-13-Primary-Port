@@ -157,7 +157,7 @@
 	darksight = 3
 	invis_sight = SEE_INVISIBLE_LEVEL_ONE
 	//specflags = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
-	specflags = list(EYECOLOR,NOBLOOD)
+	specflags = list(EYECOLOR,NOBLOOD, HAIR)
 	//hair_color = "mutcolor"
 	hair_alpha = 150
 	ignored_by = list(/mob/living/simple_animal/slime)
