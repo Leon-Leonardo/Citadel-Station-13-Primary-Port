@@ -11,7 +11,7 @@
 
 //These would be what you would get at point blank, decreases with distance
 #define DETONATION_RADS 200
-#define DETONATION_HALLUCINATION 600
+#define DETONATION_HALLUCINATION 0
 
 
 #define WARNING_DELAY 30 		//seconds between warnings.
@@ -41,7 +41,7 @@
 
 	var/emergency_issued = 0
 
-	var/explosion_power = 8
+	var/explosion_power = 10
 
 	var/lastwarning = 0				// Time in 1/10th of seconds since the last sent warning
 	var/power = 0
