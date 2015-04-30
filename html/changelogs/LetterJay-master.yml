@@ -35,6 +35,5 @@ delete-after: True
 changes: 
   - tweak: "Changed AutoDrobe access levels."
   - tweak: "Changed AutoDrobe contents."
-  -	experiment: "Prep for fluff text."
   - experiment: "Added Human Cubes to gamepanel. Not obtainable through normal means currently."
   - tgs: "Updated blob.dm"
