@@ -234,19 +234,11 @@
 			return
 
 		if(component_parts && istype(W, /obj/item/weapon/crowbar))
-			var/list/all_products = product_records + hidden_records + coin_records
-			for(var/datum/data/vending_product/machine_content in all_products)
-				while(machine_content.amount !=0)
-					for(var/obj/item/weapon/vending_refill/VR in component_parts)
-						VR.charges++
-						machine_content.amount--
-						if(!machine_content.amount)
-							break
 			default_deconstruction_crowbar(W)
 
 	if(istype(W, /obj/item/weapon/screwdriver) && anchored)
 		panel_open = !panel_open
-		user << "You [panel_open ? "open" : "close"] the maintenance panel."
+		user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance panel.</span>"
 		overlays.Cut()
 		if(panel_open)
 			overlays += image(icon, "[initial(icon_state)]-panel")
@@ -282,10 +274,29 @@
 	else
 		..()
 
+
+/obj/machinery/vending/default_deconstruction_crowbar(var/obj/item/O)
+	var/list/all_products = product_records + hidden_records + coin_records
+	for(var/datum/data/vending_product/machine_content in all_products)
+		while(machine_content.amount !=0)
+			var/safety = 0 //to avoid infinite loop
+			for(var/obj/item/weapon/vending_refill/VR in component_parts)
+				safety++
+				if(VR.charges < initial(VR.charges))
+					VR.charges++
+					machine_content.amount--
+					if(!machine_content.amount)
+						break
+				else
+					safety--
+			if(safety <= 0)
+				break
+	..()
+
 /obj/machinery/vending/emag_act(user as mob)
 	if(!emagged)
 		emagged  = 1
-		user << "You short out the product lock on [src]."
+		user << "<span class='notice'>You short out the product lock on [src].</span>"
 
 /obj/machinery/vending/attack_paw(mob/user)
 	return attack_hand(user)
@@ -431,7 +442,7 @@
 				return
 		else if(R in coin_records)
 			if(!coin)
-				usr << "<span class='notice'>You need to insert a coin to get this item.</span>"
+				usr << "<span class='warning'>You need to insert a coin to get this item!</span>"
 				vend_ready = 1
 				return
 			if(coin.string_attached)
@@ -440,11 +451,11 @@
 						usr << "<span class='notice'>You successfully pull [coin] out before [src] could swallow it.</span>"
 						coin = null
 					else
-						usr << "<span class='notice'>You couldn't pull [coin] out because your hands are full.</span>"
+						usr << "<span class='warning'>You couldn't pull [coin] out because your hands are full!</span>"
 						qdel(coin)
 						coin = null
 				else
-					usr << "<span class='notice'>You weren't able to pull [coin] out fast enough, the machine ate it, string and all.</span>"
+					usr << "<span class='warning'>You weren't able to pull [coin] out fast enough, the machine ate it, string and all!</span>"
 					qdel(coin)
 					coin = null
 			else
@@ -594,6 +605,7 @@
 	contraband = list()
 	premium = list()
 
+IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY CANISTER CHARGES in vending_items.dm
 */
 
 /*
@@ -779,6 +791,7 @@
 	products = list(/obj/item/weapon/restraints/handcuffs = 8,/obj/item/weapon/restraints/handcuffs/cable/zipties = 10,/obj/item/weapon/grenade/flashbang = 4,/obj/item/device/flash/handheld = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/donut = 12,/obj/item/weapon/storage/box/evidence = 6,/obj/item/device/flashlight/seclite = 4)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/storage/fancy/donut_box = 2)
+	premium = list(/obj/item/weapon/coin/antagtoken = 1)
 
 /obj/machinery/vending/hydronutrients
 	name = "\improper NutriMax"
@@ -826,7 +839,6 @@
 	desc = "A vending machine for costumes."
 	icon_state = "theater"
 	icon_deny = "theater-deny"
-	//req_access_txt = "46" //Theatre access needed, unless hacked.
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_delay = 15
 	vend_reply = "Thank you for using AutoDrobe!"
@@ -944,8 +956,7 @@
 	/obj/item/clothing/glasses/regular=2,/obj/item/clothing/head/sombrero=1,/obj/item/clothing/suit/poncho=1,
 	/obj/item/clothing/suit/ianshirt=1,/obj/item/clothing/shoes/laceup=2,/obj/item/clothing/shoes/sneakers/black=4,
 	/obj/item/clothing/shoes/sandal=1, /obj/item/clothing/gloves/fingerless=2,/obj/item/clothing/glasses/orange=1,/obj/item/clothing/glasses/red=1,
-	/obj/item/weapon/storage/belt/fannypack=1, /obj/item/weapon/storage/belt/fannypack/blue=1, /obj/item/weapon/storage/belt/fannypack/red=1,/obj/item/clothing/shoes/winterboots=3,/obj/item/clothing/shoes/jackboots=3)
+	/obj/item/weapon/storage/belt/fannypack=1, /obj/item/weapon/storage/belt/fannypack/blue=1, /obj/item/weapon/storage/belt/fannypack/red=1)
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool=1,/obj/item/clothing/mask/balaclava=1,/obj/item/clothing/head/ushanka=1,/obj/item/clothing/under/soviet=1,/obj/item/weapon/storage/belt/fannypack/black=1)
-	premium = list(/obj/item/clothing/under/suit_jacket/checkered=1,/obj/item/clothing/head/mailman=1,/obj/item/clothing/under/rank/mailman=1,/obj/item/clothing/suit/jacket/leather=1,/obj/item/clothing/under/pants/mustangjeans=1,/obj/item/clothing/shoes/clown_shoes=1)
+	premium = list(/obj/item/clothing/under/suit_jacket/checkered=1,/obj/item/clothing/head/mailman=1,/obj/item/clothing/under/rank/mailman=1,/obj/item/clothing/suit/jacket/leather=1,/obj/item/clothing/under/pants/mustangjeans=1)
 	refill_canister = /obj/item/weapon/vending_refill/clothing
-
