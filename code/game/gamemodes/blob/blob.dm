@@ -11,7 +11,7 @@ var/list/blob_nodes = list()
 	config_tag = "blob"
 	antag_flag = BE_BLOB
 
-	required_players = 10
+	required_players = 30
 	required_enemies = 1
 	recommended_enemies = 1
 
@@ -21,7 +21,7 @@ var/list/blob_nodes = list()
 	var/burst = 0
 
 	var/cores_to_spawn = 1
-	var/players_per_core = 10
+	var/players_per_core = 30
 	var/blob_point_rate = 3
 
 	var/blobwincount = 350
