@@ -25,7 +25,7 @@
 author: Jay
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
-delete-after: False
+delete-after: True
 
 # Any changes you've made.  See valid prefix list above.
 # INDENT WITH TWO SPACES.  NOT TABS.  SPACES.
@@ -33,9 +33,8 @@ delete-after: False
 # Also, this gets changed to [] after reading.  Just remove the brackets when you add new shit.
 # Please surround your changes in  double quotes ("). It works without them, but if you use certain characters it screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - tweak: "Removed AutoDrobe access requirements.
-  - tweak: "Added a few items to the AutoDrobe's list. More tweaks to follow."
-  -	experiment: "Added humancubes to gamepanel spawning. Not actually obtainbale through playermeans."
-  - experiment: "Prep for fluff text."
-  - tgs: "Blob.dm updated to match /tg/"
- 
+  - tweak: "Changed AutoDrobe access levels."
+  - tweak: "Changed AutoDrobe contents."
+  -	experiment: "Prep for fluff text."
+  - experiment: "Added Human Cubes to gamepanel. Not obtainable through normal means currently."
+  - tgs: "Updated blob.dm"
