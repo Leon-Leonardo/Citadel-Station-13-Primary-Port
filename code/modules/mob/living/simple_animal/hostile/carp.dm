@@ -34,11 +34,6 @@
 /mob/living/simple_animal/hostile/carp/Process_Spacemove(var/movement_dir = 0)
 	return 1	//No drifting in space for space carp!	//original comments do not steal
 
-/mob/living/simple_animal/hostile/carp/FindTarget()
-	. = ..()
-	if(.)
-		emote("me", 1, "gnashes at [.]!")
-
 /mob/living/simple_animal/hostile/carp/AttackingTarget()
 	..()
 	if(isliving(target))
