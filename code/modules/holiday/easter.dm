@@ -17,8 +17,8 @@
 /datum/round_event_control/rabbitrelease
 	name = "Release the Rabbits!"
 	typepath = /datum/round_event/rabbitrelease
-	weight = 5
-	max_occurrences = 10
+	weight = 0
+	max_occurrences = 1
 
 /datum/round_event/rabbitrelease/announce()
 	priority_announce("Unidentified furry objects detected coming aboard [station_name()]. Beware of Adorable-ness.", "Fluffy Alert", 'sound/AI/aliens.ogg')
