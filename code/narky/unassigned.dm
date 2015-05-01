@@ -326,7 +326,7 @@ var/const/VORE_SIZEDIFF_ANY=5
 					break
 		if(source==FLAVOUR_DIGEST)
 			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s stomach and a lump dissipates. Someone must have digested.</span>")
-			prey<<"<span class='warning'>You gurgle away inside [owner].</span>"
+			prey<<"<span class='warning'>You gurgle away inside [owner]'s stomach.</span>"
 		else if(source==FLAVOUR_RELEASE)
 			var/live_people=0
 			for(var/mob/living/M in contents)
@@ -376,13 +376,13 @@ var/const/VORE_SIZEDIFF_ANY=5
 		if(prey.vore_last_relay>SSair.times_fired-2)return
 		prey.vore_last_relay=SSair.times_fired
 		if(prey.a_intent=="help"&&!exterior)
-			prey.visible_message("<span class='notice'>[prey] shifts around inside [owner].</span>")
+			owner.visible_message("<span class='notice'>Something shifts around inside [owner].</span>")
 		else
 			if(exterior||escape||owner.stat==2)
 				release(FLAVOUR_ESCAPE,prey)
 			else
 				integrity-=15
-				prey.visible_message("<span class='warning'>[prey] slams against the inside of [owner].</span>")
+				owner.visible_message("<span class='warning'>Something slams against the inside of [owner].</span>")
 				if(prob(40)) owner.Stun(rand(1,2))
 				playsound(prey.get_top_level_mob(), 'sound/effects/attackblob.ogg', 50, 1)
 				if(integrity<=0)
@@ -611,8 +611,8 @@ var/const/VORE_SIZEDIFF_ANY=5
 	assoc_fluid="femjuice"
 	flavour_text(var/source, var/mob/living/prey, var/extra_info=0)
 		if(source==FLAVOUR_DIGEST)
-			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s stomach and a lump dissipates. Someone must have digested.</span>")
-			prey<<"<span class='warning'>You gurgle away inside [owner].</span>"
+			owner.visible_message("<span class='danger'>You hear loud gurgling from within [owner]'s belly and a lump dissipates. Someone must have digested.</span>")
+			prey<<"<span class='warning'>You gurgle away inside [owner]'s womb.</span>"
 		else if(source==FLAVOUR_RELEASE)
 			if(istype(owner.loc,/turf))
 				var/already_messy=0
@@ -1793,7 +1793,7 @@ var/list/traitor_test_list = null
 		src << "Will not transform people."
 		VO.tf_factor=VORE_TRANSFORM_SPEED_NONE
 		return
-	selection = input("What do you want to turn people into?") in list("No Change", "Human", "Monkey", "Corgi", "Cat", "Chicken", "Cow", "Lizard", "Mouse", "Pug", "Crab")
+	selection = input("What do you want to turn people into?") in list("No Change", "Human", "Monkey", "Corgi", "Cat", "Chicken", "Cow", "Lizard", "Mouse", "Pug", "Crab", "Fox")
 	switch(selection)
 		if("Human")VO.tf_path=/mob/living/carbon/human
 		if("Monkey")VO.tf_path=/mob/living/carbon/monkey
@@ -1805,6 +1805,7 @@ var/list/traitor_test_list = null
 		if("Mouse")VO.tf_path=/mob/living/simple_animal/mouse
 		if("Pug")VO.tf_path=/mob/living/simple_animal/pet/pug
 		if("Crab")VO.tf_path=/mob/living/simple_animal/crab
+		if("Fox")VO.tf_path=/mob/living/simple_animal/pet/fox
 		else VO.tf_path=null
 	VO.tf_species=null
 	if(VO.tf_path==/mob/living/carbon/human)

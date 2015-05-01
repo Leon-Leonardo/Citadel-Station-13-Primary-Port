@@ -1,6 +1,6 @@
 /obj/structure/stool/bed/chair/janicart/lawnmower
-	name = "lawnmower" // credits goes to hippiestation for this <3
-	desc = "VROOM VROOM"
+	name = "lawnmower" //credits goes to hippiestation for this <3
+	desc = "A lawnmower the destroys space vines and other terrifying possibilities, micros beware."
 	icon_state = "lawnmower"
 	var/emagged = 0
 
@@ -8,38 +8,31 @@
 		if(emagged)
 			if(istype(A, /mob/living/))
 				var/mob/living/C = A
-				var/gibbed = 0
 				if(C.sizeplay_size == SIZEPLAY_TINY)
-					C.gib()
-					gibbed = 1
-					playsound(src.loc, 'sound/effects/mowermovesquish.ogg', 75, 1)
+					C.Weaken(3)
+					playsound(src.loc, 'sound/effects/bang.ogg', 75, 1)
 					return
-				C.adjustBruteLoss(25) //Crit in 4 hits, rip
+				C.adjustBruteLoss(20) //Crit in 4 hits, rip
 				var/atom/throw_target = get_edge_target_turf(C, get_dir(src, get_step_away(C, src)))
 				C.throw_at(throw_target, 4, 1)
 				return
 
 	Move()
-		var/gibbed = 0
+		var/lawnmowered = 0
 		if(emagged)
 			for(var/mob/living/carbon/human/X in src.loc)
-				if(X.sizeplay_size == SIZEPLAY_TINY)
-					X.gib()
-					gibbed = 1
-					playsound(src.loc, 'sound/effects/mowermovesquish.ogg', 75, 1)
-					shake_camera(X, 40, 1) //BOOM BOOM SHAKE THE ROOM
 				if(X.lying)
 					if(buckled_mob == X)
 						shake_camera(X, 20, 1) //BOOM BOOM SHAKE THE ROOM
 						return
 					else
 						X.gib()
-						gibbed = 1
+						lawnmowered = 1
 						playsound(src.loc, 'sound/effects/mowermovesquish.ogg', 75, 1)
 						shake_camera(X, 40, 1) //BOOM BOOM SHAKE THE ROOM
 		for(var/obj/effect/spacevine/S in src.loc)
 			qdel(S)
-		if(gibbed)
+		if(lawnmowered)
 			return
 		else
 			playsound(src.loc, pick('sound/effects/mowermove1.ogg', 'sound/effects/mowermove2.ogg'), 75, 1)

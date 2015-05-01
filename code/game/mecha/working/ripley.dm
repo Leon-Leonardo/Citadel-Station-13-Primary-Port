@@ -2,7 +2,7 @@
 	desc = "Autonomous Power Loader Unit. This newer model is refitted with powerful armour against the dangers of the EVA mining process."
 	name = "\improper APLU \"Ripley\""
 	icon_state = "ripley"
-	step_in = 5
+	step_in = 3
 	max_temperature = 20000
 	health = 200
 	lights_power = 7
