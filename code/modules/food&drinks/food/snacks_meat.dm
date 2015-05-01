@@ -213,3 +213,46 @@
 	bonus_reagents = list("nutriment" = 1, "capsaicin" = 4, "vitamin" = 4)
 	list_reagents = list("nutriment" = 6, "capsaicin" = 5)
 	filling_color = "#FA8072"
+
+
+
+//Admin Spawn
+
+
+/obj/item/weapon/reagent_containers/food/snacks/humancube
+	name = "human cube"
+	desc = "Just add water!"
+	icon_state = "monkeycube"
+	bitesize = 12
+	wrapped = 0
+	list_reagents = list("nutriment" = 2)
+	filling_color = "#CD853F"
+
+/obj/item/weapon/reagent_containers/food/snacks/humancube/afterattack(obj/O, mob/user,proximity)
+	if(!proximity) return
+	if(istype(O,/obj/structure/sink) && !wrapped)
+		user << "<span class='notice'>You place [src] under a stream of water...</span>"
+		user.drop_item()
+		loc = get_turf(O)
+		return Expand()
+	..()
+
+/obj/item/weapon/reagent_containers/food/snacks/humancube/attack_self(mob/user)
+	if(wrapped)
+		Unwrap(user)
+
+/obj/item/weapon/reagent_containers/food/snacks/humancube/proc/Expand()
+	visible_message("<span class='notice'>[src] expands!</span>")
+	new /mob/living/carbon/human(get_turf(src))
+	qdel(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/humancube/proc/Unwrap(mob/user)
+	icon_state = "monkeycube"
+	desc = "Just add water!"
+	user << "<span class='notice'>You unwrap the cube.</span>"
+	wrapped = 0
+
+/obj/item/weapon/reagent_containers/food/snacks/humancube/humancubewrapped
+	desc = "Still wrapped in some paper."
+	icon_state = "monkeycubewrap"
+	wrapped = 1

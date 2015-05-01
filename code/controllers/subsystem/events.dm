@@ -78,9 +78,10 @@ var/datum/subsystem/events/SSevent
 		frequency_lower=1000
 		frequency_upper=1500
 		//if ((!( ticker ) || emergency_shuttle.location))
-		if(SSshuttle.emergency.mode == SHUTTLE_DOCKED || SSshuttle.emergency.mode == SHUTTLE_RECALL)
-			return
-		SSshuttle.emergency.request(0.5, emergency_reason=" The station is under abnormal status, and the shuttle has been auto-called.")
+		//if(SSshuttle.emergency.mode == SHUTTLE_DOCKED || SSshuttle.emergency.mode == SHUTTLE_CALL)
+		//	return
+		if(SSshuttle.emergency.mode < SHUTTLE_CALL)
+			SSshuttle.emergency.request(0.5, emergency_reason=" The station is under abnormal status, and the shuttle has been auto-called.")
 		//priority_announce("The emergency shuttle has been called due to the station's abnormal status. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.", null, 'sound/AI/shuttlecalled.ogg', "Priority")
 
 //selects a random event based on whether it can occur and it's 'weight'(probability)

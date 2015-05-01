@@ -248,6 +248,7 @@
 	desc = "Used to bottle chemicals to create pills."
 	density = 1
 	anchored = 1
+	layer = 2.9
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	use_power = 1

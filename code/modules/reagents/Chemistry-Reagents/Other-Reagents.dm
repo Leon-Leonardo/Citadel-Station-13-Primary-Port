@@ -155,6 +155,12 @@ datum/reagent/water/reaction_obj(var/obj/O, var/volume)
 		var/obj/item/toy/carpplushie/dehy_carp/dehy = O
 		dehy.Swell() // Makes a carp
 
+
+	// Human cube
+	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/humancube))
+		var/obj/item/weapon/reagent_containers/food/snacks/humancube/cube = O
+		if(!cube.wrapped)
+			cube.Expand()
 	return
 
 /*
