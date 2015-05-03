@@ -1,6 +1,6 @@
 /datum/round_event_control/wizard/race //Lizard Wizard? Lizard Wizard.
 	name = "Race Swap"
-	weight = 2
+	weight = 0 // slime species swapping to another race = instant death, including the wizard itself
 	typepath = /datum/round_event/wizard/race/
 	max_occurrences = 5
 	earliest_start = 0
