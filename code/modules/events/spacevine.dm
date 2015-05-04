@@ -1,8 +1,14 @@
 /datum/round_event_control/spacevine
 	name = "Spacevine"
 	typepath = /datum/round_event/spacevine
-	weight = 15
+	weight = 0 //vines were spawned, freaky shit happened, never again until they're fixed
 	max_occurrences = 3
+
+/datum/round_event/spacevine
+	announceWhen= 150
+
+/datum/round_event/spacevine/announce()
+	priority_announce("Unknown biological entity has been detected aboard [station_name()]. All personnel must contain the outbreak.", "Entity alert")
 
 /datum/round_event/spacevine/start()
 	var/list/turfs = list() //list of all the empty floor turfs in the hallway areas
