@@ -213,22 +213,24 @@ datum/reagent/medicine/styptic_powder/on_mob_life(var/mob/living/M as mob)
 datum/reagent/medicine/salglu_solution
 	name = "Saline-Glucose Solution"
 	id = "salglu_solution"
-	description = "Has a 33% chance per metabolism cycle to heal brute and burn damage."
+	description = "Heals brute and burn damage slowly. Overdose on 40 units within the system."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	overdose_threshhold = 40
 
 datum/reagent/medicine/salglu_solution/on_mob_life(var/mob/living/M as mob)
-	if(prob(33))
-		M.adjustBruteLoss(-0.5*REM)
-		M.adjustFireLoss(-0.5*REM)
-	..()
-	return
+	M.adjustBruteLoss(-0.25*REM)
+	M.adjustFireLoss(-0.25*REM)
+
+datum/reagent/medicine/salglu_solution/overdose_process(var/mob/living/M as mob)
+	M.adjustBruteLoss(1*REM)
+	M.adjustFireLoss(1*REM)
 
 datum/reagent/medicine/synthflesh
 	name = "Synthflesh"
 	id = "synthflesh"
-	description = "Has a 100% chance of instantly healing brute and burn damage. One unit of the chemical will heal one point of damage. Touch application only."
+	description = "Has a 100% chance of instantly healing brute and burn damage. One unit of the chemical will heal 1.5 point of damage. Touch application only."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 
@@ -319,7 +321,7 @@ datum/reagent/medicine/potass_iodide/on_mob_life(var/mob/living/M as mob)
 datum/reagent/medicine/pen_acid
 	name = "Pentetic Acid"
 	id = "pen_acid"
-	description = "Reduces massive amounts of radiation and toxin damage while purging other chemicals from the body. Has a chance of dealing brute damage."
+	description = "Reduces massive amounts of radiation and toxin damage while purging other chemicals from the body. Heals a bit of brute damage."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -328,8 +330,7 @@ datum/reagent/medicine/pen_acid/on_mob_life(var/mob/living/M as mob)
 	if(M.radiation > 0)
 		M.radiation -= 4
 	M.adjustToxLoss(-2*REM)
-	if(prob(33))
-		M.adjustBruteLoss(0.5*REM)
+	M.adjustBruteLoss(0.1*REM)
 	if(M.radiation < 0)
 		M.radiation = 0
 	for(var/datum/reagent/R in M.reagents.reagent_list)
@@ -377,7 +378,7 @@ datum/reagent/medicine/salbutamol/on_mob_life(var/mob/living/M as mob)
 datum/reagent/medicine/perfluorodecalin
 	name = "Perfluorodecalin"
 	id = "perfluorodecalin"
-	description = "Heals suffocation damage so quickly that you could have a spacewalk, but it mutes your voice. Has a 33% chance of healing brute and burn damage per cycle as well."
+	description = "Heals suffocation damage so quickly that you could have a spacewalk, but it mutes your voice. Heals a bit of brute and burn damage."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
@@ -385,9 +386,8 @@ datum/reagent/medicine/perfluorodecalin
 datum/reagent/medicine/perfluorodecalin/on_mob_life(var/mob/living/carbon/human/M as mob)
 	M.adjustOxyLoss(-12*REM)
 	M.silent = max(M.silent, 5)
-	if(prob(33))
-		M.adjustBruteLoss(-0.5*REM)
-		M.adjustFireLoss(-0.5*REM)
+	M.adjustBruteLoss(-0.2*REM)
+	M.adjustFireLoss(-0.2*REM)
 	..()
 	return
 
@@ -398,7 +398,7 @@ datum/reagent/medicine/ephedrine
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	overdose_threshold = 45
+	overdose_threshold = 55
 	addiction_threshold = 30
 
 datum/reagent/medicine/ephedrine/on_mob_life(var/mob/living/M as mob)
