@@ -217,7 +217,7 @@ datum/reagent/medicine/salglu_solution
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	overdose_threshhold = 40
+	overdose_threshold = 40
 
 datum/reagent/medicine/salglu_solution/on_mob_life(var/mob/living/M as mob)
 	M.adjustBruteLoss(-0.25*REM)
