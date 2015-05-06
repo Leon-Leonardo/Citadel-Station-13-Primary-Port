@@ -194,10 +194,10 @@ Made by Xhuis
 			text += "<br><font size=2><b>The thralls were:</b></font>"
 			for(var/datum/mind/thrall in thralls)
 				text += printplayer(thrall)
-	else
-		world << "<font size=3>Round-end code broke! Please report this and its circumstances on GitHub at https://github.com/tgstation/-tg-station/issues</font>"
-	text += "<br>"
-	world << text
+	//else
+	//	world << "<font size=3>Round-end code broke! Please report this and its circumstances on GitHub at https://github.com/tgstation/-tg-station/issues</font>"
+	//text += "<br>"
+	//world << text
 
 
 /*

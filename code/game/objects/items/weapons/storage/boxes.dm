@@ -360,6 +360,19 @@
 	for(var/i = 1; i <= 5; i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
 
+/obj/item/weapon/storage/box/humancubes
+	name = "human cube box"
+	desc = "Drymate brand human cubes. Just add water!"
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "humancubebox"
+	storage_slots = 7
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/humancube)
+
+/obj/item/weapon/storage/box/humancube/New()
+	..()
+	for(var/i = 1; i <= 5; i++)
+		new /obj/item/weapon/reagent_containers/food/snacks/humancube/wrapped(src)
+
 
 /obj/item/weapon/storage/box/permits
 	name = "box of construction permits"

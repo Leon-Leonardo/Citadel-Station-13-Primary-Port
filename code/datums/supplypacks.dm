@@ -764,6 +764,12 @@ var/list/all_supply_groups = list(supply_emergency,supply_security,supply_engine
 	cost = 20
 	containername = "monkey crate"
 
+/datum/supply_packs/organic/human
+	name ="Human Crate" //Oh god, why?
+	contains = list (/obj/item/weapon/storage/box/humancubes)
+	cost = 250 //Prevent greentext abuse
+	containername = "human crate"
+
 /datum/supply_packs/organic/party
 	name = "Party equipment"
 	contains = list(/obj/item/weapon/storage/box/drinkingglasses,

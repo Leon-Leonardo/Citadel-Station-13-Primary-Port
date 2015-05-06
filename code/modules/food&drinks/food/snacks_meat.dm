@@ -223,7 +223,7 @@
 	name = "human cube"
 	desc = "Just add water!"
 	icon_state = "monkeycube"
-	bitesize = 12
+	bitesize = 16
 	wrapped = 0
 	list_reagents = list("nutriment" = 2)
 	filling_color = "#CD853F"
@@ -252,7 +252,7 @@
 	user << "<span class='notice'>You unwrap the cube.</span>"
 	wrapped = 0
 
-/obj/item/weapon/reagent_containers/food/snacks/humancube/humancubewrapped
+/obj/item/weapon/reagent_containers/food/snacks/humancube/wrapped
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
 	wrapped = 1
