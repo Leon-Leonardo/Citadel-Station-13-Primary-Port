@@ -107,15 +107,23 @@ datum/reagent/medicine/cryoxadone
 
 datum/reagent/medicine/cryoxadone/on_mob_life(var/mob/living/M as mob)
 	if(M.stat != DEAD && M.bodytemperature < 270)
-		M.adjustCloneLoss(-4)
-		M.adjustOxyLoss(-10)
-		M.adjustBruteLoss(-3)
-		M.adjustFireLoss(-3)
-		M.adjustToxLoss(-3)
+		M.adjustCloneLoss(-1.5)
+		M.adjustOxyLoss(-5)
+		M.adjustBruteLoss(-2)
+		M.adjustFireLoss(-2)
+		M.adjustToxLoss(-2)
 		M.status_flags &= ~DISFIGURED
-
 	..()
 	return
+
+datum/reagent/medicine/clonexadrone/on_mob_life(var/mob/living/M as mob)
+	if(M.stat != DEAD && M.bodytemperature < 270)
+		M.adjustCloneLoss(-3)
+		M.adjustOxyLoss(-5)
+		M.adjustBruteLoss(-2)
+		M.adjustFireLoss(-2)
+		M.adjustToxLoss(-2)
+		M.status_flags &= ~DISFIGURED
 
 datum/reagent/medicine/rezadone
 	name = "Rezadone"
@@ -123,23 +131,26 @@ datum/reagent/medicine/rezadone
 	description = "A powder derived from fish toxin, this substance can effectively treat cellular damage in humanoids, though excessive consumption has side effects."
 	reagent_state = SOLID
 	color = "#669900" // rgb: 102, 153, 0
+	overdose_threshold = 36
 
 datum/reagent/medicine/rezadone/on_mob_life(var/mob/living/M as mob)
 	switch(current_cycle)
 		if(1 to 15)
-			M.adjustCloneLoss(-1)
-			M.heal_organ_damage(1,1)
+			M.adjustCloneLoss(-3)
+			M.adjustBruteLoss(-2)
+			M.adjustFireLoss(-2)
 		if(15 to 35)
-			M.adjustCloneLoss(-2)
-			M.heal_organ_damage(2,1)
+			M.adjustCloneLoss(-5)
+			M.adjustBruteLoss(-2)
+			M.adjustFireLoss(-2)
 			M.status_flags &= ~DISFIGURED
-		if(35 to INFINITY)
-			M.adjustToxLoss(1)
-			M.Dizzy(5)
-			M.Jitter(5)
-
 	..()
 	return
+
+datum/reagent/medicine/stimulants/overdose_process(var/mob/living/M as mob)
+	M.adjustToxLoss(1)
+	M.Dizzy(5)
+	M.Jitter(5)
 
 datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
@@ -220,8 +231,9 @@ datum/reagent/medicine/salglu_solution
 	overdose_threshold = 40
 
 datum/reagent/medicine/salglu_solution/on_mob_life(var/mob/living/M as mob)
-	M.adjustBruteLoss(-0.25*REM)
-	M.adjustFireLoss(-0.25*REM)
+	M.adjustBruteLoss(-0.50*REM)
+	M.adjustFireLoss(-0.50*REM)
+	M.nutrition-= 3
 
 datum/reagent/medicine/salglu_solution/overdose_process(var/mob/living/M as mob)
 	M.adjustBruteLoss(1*REM)
@@ -360,36 +372,32 @@ datum/reagent/medicine/sal_acid/overdose_process(var/mob/living/M as mob)
 	..()
 	return
 
-datum/reagent/medicine/salbutamol
-	name = "Salbutamol"
-	id = "salbutamol"
-	description = "Quickly heals oxygen damage while slowing down suffocation. Great for stabilizing critical patients!"
-	reagent_state = LIQUID
-	color = "#C8A5DC"
-	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+datum/reagent/medicine/dexalin
+	name = "Dexalin"
+	id = "dexalin"
+	description = "Dexalin is used in the treatment of oxygen deprivation."
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/medicine/salbutamol/on_mob_life(var/mob/living/M as mob)
-	M.adjustOxyLoss(-3*REM)
-	if(M.losebreath >= 4)
-		M.losebreath -= 2
+datum/reagent/medicine/dexalin/on_mob_life(var/mob/living/M as mob)
+	M.adjustOxyLoss(-2*REM)
+	if(holder.has_reagent("lexorin"))
+		holder.remove_reagent("lexorin", 2*REM)
 	..()
 	return
 
-datum/reagent/medicine/perfluorodecalin
-	name = "Perfluorodecalin"
-	id = "perfluorodecalin"
-	description = "Heals suffocation damage so quickly that you could have a spacewalk, but it mutes your voice. Heals a bit of brute and burn damage."
-	reagent_state = LIQUID
-	color = "#C8A5DC"
-	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+datum/reagent/medicine/dexalinp
+	name = "Dexalin Plus"
+	id = "dexalinp"
+	description = "Dexalin Plus is used in the treatment of oxygen deprivation. Its highly effective."
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/medicine/perfluorodecalin/on_mob_life(var/mob/living/carbon/human/M as mob)
-	M.adjustOxyLoss(-12*REM)
-	M.silent = max(M.silent, 5)
-	M.adjustBruteLoss(-0.2*REM)
-	M.adjustFireLoss(-0.2*REM)
+datum/reagent/medicine/dexalinp/on_mob_life(var/mob/living/M as mob)
+	M.adjustOxyLoss(-15*REM)
+	if(holder.has_reagent("lexorin"))
+		holder.remove_reagent("lexorin", 5*REM)
 	..()
 	return
+
 
 datum/reagent/medicine/ephedrine
 	name = "Ephedrine"
@@ -554,11 +562,9 @@ datum/reagent/medicine/atropine
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
-	overdose_threshold = 35
+	overdose_threshold = 45
 
 datum/reagent/medicine/atropine/on_mob_life(var/mob/living/M as mob)
-	if(M.health > -60)
-		M.adjustToxLoss(0.5*REM)
 	if(M.health < -25)
 		M.adjustBruteLoss(-1.5*REM)
 		M.adjustFireLoss(-1.5*REM)
@@ -566,9 +572,6 @@ datum/reagent/medicine/atropine/on_mob_life(var/mob/living/M as mob)
 		M.setOxyLoss(65)
 	if(M.losebreath > 5)
 		M.losebreath = 5
-	if(prob(20))
-		M.Dizzy(5)
-		M.Jitter(5)
 	..()
 	return
 
@@ -625,7 +628,7 @@ datum/reagent/medicine/strange_reagent
 
 datum/reagent/medicine/strange_reagent/reaction_mob(var/mob/living/carbon/human/M as mob, var/method=TOUCH, var/volume)
 	if(M.stat == DEAD)
-		if(M.getBruteLoss() >= 100 || M.getFireLoss() >= 100)
+		if(M.getBruteLoss() >= 125 || M.getFireLoss() >= 125)
 			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
 			return
 		var/mob/dead/observer/ghost = M.get_ghost()
