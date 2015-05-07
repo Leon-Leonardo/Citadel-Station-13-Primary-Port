@@ -660,24 +660,6 @@ Sorry Giacom. Please don't be mad :(
 	src << "<span class='notice'>You're too exhausted to keep going...</span>"
 	Weaken(5)
 
-/mob/living/update_gravity(has_gravity)
-	if(!ticker)
-		return
-	float(!has_gravity)
-
-/mob/living/proc/float(on)
-	if(throwing)
-		return
-	if(on && !floating)
-		animate(src, pixel_y = pixel_y + 2, time = 10, loop = -1)
-		floating = 1
-	else if(!on && floating)
-		var/final_pixel_y = initial(pixel_y)
-		if(lying && !buckled)
-			final_pixel_y = lying_pixel_offset
-		animate(src, pixel_y = final_pixel_y, time = 10)
-		floating = 0
-
 //called when the mob receives a bright flash
 /mob/living/proc/flash_eyes(intensity = 1, override_blindness_check = 0)
 	if(check_eye_prot() < intensity && (override_blindness_check || !(disabilities & BLIND)))
@@ -776,8 +758,6 @@ Sorry Giacom. Please don't be mad :(
 	if(lying && !buckled)
 		final_pixel_y = lying_pixel_offset
 	..(A, final_pixel_y)
-	floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
-
 /mob/living/proc/do_jitter_animation(jitteriness)
 	var/amplitude = min(4, (jitteriness/100) + 1)
 	var/pixel_x_diff = rand(-amplitude, amplitude)
@@ -787,7 +767,6 @@ Sorry Giacom. Please don't be mad :(
 		final_pixel_y = lying_pixel_offset
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
 	animate(pixel_x = initial(pixel_x) , pixel_y = final_pixel_y , time = 2)
-	floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
 /mob/living/proc/get_temperature(var/datum/gas_mixture/environment)
 	var/loc_temp = T0C
