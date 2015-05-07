@@ -775,14 +775,14 @@ datum
 	name = "HealNomchem"
 	id = "healnomchem"
 	result = "healnomchem"
-	required_reagents = list("omnizine" = 3, "vorechem" = 1)
+	required_reagents = list("omnizine" = 2, "vorechem" = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/hurtnomchem
 	name = "HurtNomchem"
 	id = "hurtnomchem"
 	result = "hurtnomchem"
-	required_reagents = list("pacid" = 1, "vorechem" = 1)
+	required_reagents = list("facid" = 1, "vorechem" = 1)
 	result_amount = 1
 
 
