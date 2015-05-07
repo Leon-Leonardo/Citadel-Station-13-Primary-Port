@@ -166,15 +166,6 @@
 	required_reagents = list("sal_acid" = 1, "lithium" = 1, "aluminium" = 1, "bromine" = 1, "ammonia" = 1)
 	result_amount = 5
 
-/datum/chemical_reaction/perfluorodecalin
-	name = "Perfluorodecalin"
-	id = "perfluorodecalin"
-	result = "perfluorodecalin"
-	required_reagents = list("hydrogen" = 1, "fluorine" = 1, "oil" = 1)
-	result_amount = 3
-	required_temp = 370
-	mix_message = "The mixture rapidly turns into a dense pink liquid."
-
 /datum/chemical_reaction/ephedrine
 	name = "Ephedrine"
 	id = "ephedrine"
@@ -249,6 +240,14 @@
 	required_reagents = list("stable_plasma" = 1, "acetone" = 1, "mutagen" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/clonexadone
+	name = "Clonexadone"
+	id = "clonexadone"
+	result = "clonexadone"
+	required_reagents = list("cryoxadone" = 1, "sodium" = 1)
+	required_catalysts = list("plasma" = 5)
+	result_amount = 2
+
 /////////////////////       ///////////////
 ///////////////////    OTHER //////////////
 ////////////////////        ///////////////
@@ -317,6 +316,28 @@
 	required_reagents = list("capsaicin" = 1, "ethanol" = 5)
 	result_amount = 5
 
+/datum/chemical_reaction/omnizine
+	name = "Omnizine"
+	id = "omnizine"
+	result = "omnizine"
+	required_reagents = list("charcoal" = 1, "salglu_solution" = 1, "dexalinp" = 1)
+	result_amount = 1.5
+
+/datum/chemical_reaction/dexalin
+	name = "Dexalin"
+	id = "dexalin"
+	result = "dexalin"
+	required_reagents = list("oxygen" = 2)
+	required_catalysts = list("plasma" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/dexalinp
+	name = "Dexalin Plus"
+	id = "dexalinp"
+	result = "dexalinp"
+	required_reagents = list("dexalin" = 1, "carbon" = 1, "iron" = 1)
+	result_amount = 3
+	required_temp = 250
 
 ////////////////////////////////// VIROLOGY //////////////////////////////////////////
 
