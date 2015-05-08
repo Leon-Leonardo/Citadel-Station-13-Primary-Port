@@ -241,10 +241,12 @@ datum/reagent/medicine/salglu_solution/on_mob_life(var/mob/living/M as mob)
 	M.adjustBruteLoss(-0.50*REM)
 	M.adjustFireLoss(-0.50*REM)
 	M.nutrition-= 3
+	return
 
 datum/reagent/medicine/salglu_solution/overdose_process(var/mob/living/M as mob)
 	M.adjustBruteLoss(1*REM)
 	M.adjustFireLoss(1*REM)
+	return
 
 datum/reagent/medicine/synthflesh
 	name = "Synthflesh"
