@@ -563,7 +563,7 @@ datum/chemical_reaction/pestkiller
 	name = "colorful_reagent"
 	id = "colorful_reagent"
 	result = "colorful_reagent"
-	required_reagents = list("stable_plasma" = 1, "radium" = 1, "space_drugs" = 1, "cryoxadone" = 1, "triple_citrus" = 1)
+	required_reagents = list("stable_plasma" = 1, "radium" = 1, "space_drugs" = 1, "cryoxadone" = 1, "bluecrayonpowder" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/life
@@ -954,7 +954,7 @@ datum/chemical_reaction/pestkiller
 	result_amount = 3
 
 /datum/chemical_reaction/pyrosium/on_reaction(var/datum/reagents/holder, var/created_volume)
-	holder.chem_temp = 20 // also cools the fuck down
+	holder.chem_temp = 300 // also heats the fuck up
 	return
 
 
