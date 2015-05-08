@@ -32,7 +32,6 @@
 #define FILE_DIR "icons/stamp_icons"
 #define FILE_DIR "icons/Testing"
 #define FILE_DIR "icons/turf"
-#define FILE_DIR "icons/unused"
 #define FILE_DIR "icons/vending_icons"
 #define FILE_DIR "nano"
 #define FILE_DIR "nano/images"
@@ -59,8 +58,8 @@
 // END_PREFERENCES
 
 // BEGIN_INCLUDE
-#include "_maps\metastation.dm"
-#include "_maps\map_files\MetaStation\MetaStation.v41A.II.dmm"
+#include "_maps\tgstation2.dm"
+#include "_maps\map_files\TgStation\tgstation.2.1.3.dmm"
 #include "code\_compile_options.dm"
 #include "code\hub.dm"
 #include "code\world.dm"
@@ -746,6 +745,7 @@
 #include "code\game\objects\structures\ladders.dm"
 #include "code\game\objects\structures\lamarr_cage.dm"
 #include "code\game\objects\structures\lattice.dm"
+#include "code\game\objects\structures\lawnmower.dm"
 #include "code\game\objects\structures\mineral_doors.dm"
 #include "code\game\objects\structures\mirror.dm"
 #include "code\game\objects\structures\mop_bucket.dm"

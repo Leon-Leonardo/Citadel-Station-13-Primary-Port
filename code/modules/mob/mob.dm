@@ -82,6 +82,31 @@ var/next_mob_id = 0
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 
 /mob/visible_message(var/message, var/self_message, var/blind_message)
+	var/mob/origin=src.get_top_level_mob()
+	for(var/mob/M in viewers(origin))
+		M.visible_message_inside(message, self_message, blind_message, src)
+/*	for(var/mob/M in viewers(src))
+		var/msg = message
+		if(self_message && M==src)
+			msg = self_message
+		M.show_message( msg, 1, blind_message, 2)*/
+
+/mob/proc/visible_message_inside(var/message, var/self_message, var/blind_message, var/message_source)
+	var/msg = message
+	if(self_message && src==message_source)
+		msg = self_message
+	src.show_message( msg, 1, blind_message, 2)
+	for(var/mob/M in src)
+		if(M==src)
+			continue
+		M.visible_message_inside(message,self_message,blind_message, message_source)
+
+
+
+//Shitty way of handling things. But it's only until I can find the snippet that hides people in containers from using the 'me' commands.
+
+/*
+/mob/visible_message(var/message, var/self_message, var/blind_message)
 	var/list/mob_viewers = list()
 	var/list/possible_viewers = list()
 	mob_viewers |= src
@@ -113,7 +138,7 @@ var/next_mob_id = 0
 				continue
 			mob_hearers |= C
 		for(var/mob/MOB in mob_hearers)
-			MOB.show_message(blind_message, 2)
+			MOB.show_message(blind_message, 2)*/
 
 /mob/proc/get_top_level_mob()
 	if(istype(src.loc,/mob)&&src.loc!=src)
