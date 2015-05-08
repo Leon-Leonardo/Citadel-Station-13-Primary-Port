@@ -18,5 +18,11 @@
 				final_pixel_y = lying_pixel_offset
 				if(dir & (EAST|WEST)) //Facing east or west
 					final_dir = pick(NORTH, SOUTH) //So you fall on your side rather than your face or ass
+		lying_prev = lying	//so we don't try to animate until there's been another change.
+
+	if(changed)
+		animate(src, transform = ntransform, time = 2, pixel_y = final_pixel_y, dir = final_dir, easing = EASE_IN|EASE_OUT)
+
+
 
 		lying_prev = lying	//so we don't try to animate until there's been another change.

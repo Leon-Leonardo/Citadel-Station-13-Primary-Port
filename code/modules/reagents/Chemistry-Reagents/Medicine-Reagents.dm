@@ -116,7 +116,14 @@ datum/reagent/medicine/cryoxadone/on_mob_life(var/mob/living/M as mob)
 	..()
 	return
 
-datum/reagent/medicine/clonexadrone/on_mob_life(var/mob/living/M as mob)
+
+datum/reagent/medicine/clonexadone
+	name = "Clonexadone"
+	id = "clonexadone"
+	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the targets body temperature must be under 170K for it to metabolise correctly."
+	color = "0078C8"
+
+datum/reagent/medicine/clonexadone/on_mob_life(var/mob/living/M as mob)
 	if(M.stat != DEAD && M.bodytemperature < 270)
 		M.adjustCloneLoss(-3)
 		M.adjustOxyLoss(-5)
