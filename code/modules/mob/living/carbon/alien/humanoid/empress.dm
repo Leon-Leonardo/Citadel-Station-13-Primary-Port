@@ -1,20 +1,21 @@
-/mob/living/carbon/alien/humanoid/queen
-	name = "alien queen"
+/mob/living/carbon/alien/humanoid/empress
+	name = "alien empress"
 	caste = "q"
-	maxHealth = 250
-	health = 250
+	maxHealth = 400
+	health = 400
+	icon = 'icons/mob/alienqueen.dmi'
 	icon_state = "alienq_s"
-	status_flags = CANPARALYSE
 	heal_rate = 5
 	plasma_rate = 20
 	ventcrawler = 0 //pull over that ass too fat
+	mob_size = MOB_SIZE_LARGE
 
 
-/mob/living/carbon/alien/humanoid/queen/New()
+/mob/living/carbon/alien/humanoid/empress/New()
 	create_reagents(100)
 
 	//there should only be one queen
-	for(var/mob/living/carbon/alien/humanoid/queen/Q in living_mob_list)
+	for(var/mob/living/carbon/alien/humanoid/empress/Q in living_mob_list)
 		if(Q == src)		continue
 		if(Q.stat == DEAD)	continue
 		if(Q.client)
@@ -30,7 +31,7 @@
 
 	..()
 
-/mob/living/carbon/alien/humanoid/queen/handle_hud_icons_health()
+/mob/living/carbon/alien/humanoid/empress/handle_hud_icons_health()
 	if (src.healths)
 		if (src.stat != 2)
 			switch(health)
@@ -51,7 +52,7 @@
 		else
 			src.healths.icon_state = "health7"
 
-/mob/living/carbon/alien/humanoid/queen/movement_delay()
+/mob/living/carbon/alien/humanoid/empress/movement_delay()
 	. = ..()
 	. += 5
 
@@ -73,13 +74,13 @@
 	new /obj/structure/alien/egg(user.loc)
 	return 1
 
-/mob/living/carbon/alien/humanoid/queen/large
+/mob/living/carbon/alien/humanoid/empress/large
 	icon = 'icons/mob/alienqueen.dmi'
 	icon_state = "queen_s"
 	pixel_x = -16
 	mob_size = MOB_SIZE_LARGE
 
-/mob/living/carbon/alien/humanoid/queen/large/update_icons()
+/mob/living/carbon/alien/humanoid/empress/large/update_icons()
 	update_hud()		//TODO: remove the need for this to be here
 	overlays.Cut()
 	if(stat == DEAD)
@@ -90,28 +91,3 @@
 		icon_state = "queen_s"
 	for(var/image/I in overlays_standing)
 		overlays += I
-
-/*
-/obj/effect/proc_holder/alien/evolve
-	name = "Evolve"
-	desc = "Produce an interal egg sac capable of spawning children. Only one queen can exist at a time."
-	plasma_cost = 500
-
-	action_icon_state = "alien_evolve_drone"
-
-/obj/effect/proc_holder/alien/evolve/fire(var/mob/living/carbon/alien/user)
-	var/no_queen = 1
-	for(var/mob/living/carbon/alien/humanoid/empress/Q in living_mob_list)
-		if(!Q.key || !Q.getorgan(/obj/item/organ/brain))
-			continue
-		no_queen = 0
-	if(no_queen)
-		user << "<span class='noticealien'>You begin to evolve!</span>"
-		user.visible_message("<span class='alertalien'>[user] begins to twist and contort!</span>")
-		var/mob/living/carbon/alien/humanoid/empress/new_xeno = new (user.loc)
-		user.mind.transfer_to(new_xeno)
-		qdel(user)
-		return 1
-	else
-		user << "<span class='notice'>We already have an alive queen.</span>"
-		return 0 */
