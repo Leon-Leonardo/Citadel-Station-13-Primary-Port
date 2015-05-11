@@ -228,28 +228,6 @@ datum/reagent/medicine/styptic_powder/on_mob_life(var/mob/living/M as mob)
 	..()
 	return
 
-datum/reagent/medicine/salglu_solution
-	name = "Saline-Glucose Solution"
-	id = "salglu_solution"
-	description = "Heals brute and burn damage slowly. Overdose on 40 units within the system."
-	reagent_state = LIQUID
-	color = "#C8A5DC"
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	overdose_threshold = 40
-
-datum/reagent/medicine/salglu_solution/on_mob_life(var/mob/living/M as mob)
-	M.adjustBruteLoss(-0.50*REM)
-	M.adjustFireLoss(-0.50*REM)
-	M.nutrition-= 3
-	..()
-	return
-
-datum/reagent/medicine/salglu_solution/overdose_process(var/mob/living/M as mob)
-	M.adjustBruteLoss(1*REM)
-	M.adjustFireLoss(1*REM)
-	..()
-	return
-
 datum/reagent/medicine/synthflesh
 	name = "Synthflesh"
 	id = "synthflesh"
@@ -280,6 +258,28 @@ datum/reagent/medicine/charcoal/on_mob_life(var/mob/living/M as mob)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
 			M.reagents.remove_reagent(R.id,0.5)
+	..()
+	return
+
+datum/reagent/medicine/salglu_solution
+	name = "Saline-Glucose Solution"
+	id = "salglu_solution"
+	description = "Heals brute and burn damage slowly. Overdose on 40 units within the system."
+	reagent_state = LIQUID
+	color = "#C8A5DC"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	overdose_threshold = 40
+
+datum/reagent/medicine/salglu_solution/on_mob_life(var/mob/living/M as mob)
+	M.adjustBruteLoss(-0.5*REM)
+	M.adjustFireLoss(-0.5*REM)
+	M.nutrition-= 1
+	..()
+	return
+
+datum/reagent/medicine/salglu_solution/overdose_process(var/mob/living/M as mob)
+	M.adjustBruteLoss(1*REM)
+	M.adjustFireLoss(1*REM)
 	..()
 	return
 
