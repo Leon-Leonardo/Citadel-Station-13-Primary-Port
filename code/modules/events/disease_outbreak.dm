@@ -18,7 +18,7 @@
 
 /datum/round_event/disease_outbreak/start()
 	if(!virus_type)
-		virus_type = pick(/datum/disease/dnaspread, /datum/disease/flu, /datum/disease/brainrot, /datum/disease/magnitis, /datum/disease/fake_gbs, /datum/disease/pierrot_throat, )
+		virus_type = pick(/datum/disease/dnaspread, /datum/disease/flu, /datum/disease/brainrot, /datum/disease/magnitis, /datum/disease/fake_gbs, /datum/disease/pierrot_throat)
 
 	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
 		var/turf/T = get_turf(H)
