@@ -212,6 +212,12 @@ datum
 			adjective="boney"
 			restricted=2
 			attack_verb = "bone"
+		cosmetic_skeleton
+			//name="skeleton"
+			generic="skeleton"
+			adjective="very boney"
+			restricted=2
+			attack_verb = "bone"
 		shadow
 			//name="shadow"
 			generic="darkness"

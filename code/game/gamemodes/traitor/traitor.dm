@@ -93,7 +93,7 @@
 	if(istype(traitor.current, /mob/living/silicon))
 		var/objective_count = 0
 
-		if(prob(5))
+		if(prob(10))
 			var/datum/objective/block/block_objective = new
 			block_objective.owner = traitor
 			traitor.objectives += block_objective
@@ -129,12 +129,12 @@
 					destroy_objective.owner = traitor
 					destroy_objective.find_target()
 					traitor.objectives += destroy_objective
-				else if(prob(5))
+				else if(prob(40))
 					var/datum/objective/maroon/maroon_objective = new
 					maroon_objective.owner = traitor
 					maroon_objective.find_target()
 					traitor.objectives += maroon_objective
-				else
+				else if (prob(5))
 					var/datum/objective/assassinate/kill_objective = new
 					kill_objective.owner = traitor
 					kill_objective.find_target()
