@@ -81,7 +81,7 @@ var/datum/subsystem/events/SSevent
 		//if(SSshuttle.emergency.mode == SHUTTLE_DOCKED || SSshuttle.emergency.mode == SHUTTLE_CALL)
 		//	return
 		if(SSshuttle.emergency.mode < SHUTTLE_CALL)
-			SSshuttle.emergency.request(null, 2.5)
+			SSshuttle.emergency.request(null, 1.5)
 			log_game("Round time limit reach. Shuttle has been auto-called.")
 			message_admins("The station is under abnormal status. The emergency shuttle has been called.")
 

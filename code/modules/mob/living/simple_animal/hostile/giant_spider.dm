@@ -38,10 +38,10 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
-	maxHealth = 200
-	health = 200
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	maxHealth = 100
+	health = 100
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	faction = list("spiders")
 	var/busy = 0
 	pass_flags = PASSTABLE

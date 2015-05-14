@@ -339,3 +339,53 @@
 					H.visible_message("<span class='danger'>[H] steps in the broken glass!</span>", \
 							"<span class='userdanger'>You step in the broken glass!</span>")
 					cooldown = world.time
+
+
+/*
+ * Phoron Glass sheets
+ */
+
+
+/*
+/obj/item/stack/sheet/glass/phoronglass
+	name = "phoron glass"
+	desc = "A very strong and very resistant sheet of a phoron-glass alloy."
+	singular_name = "phoron glass sheet"
+	icon_state = "sheet-phoronglass"
+	matter = list("glass" = 7500)
+	origin_tech = "materials=3;phorontech=2"
+	created_window = /obj/structure/window/phoronbasic
+
+/obj/item/stack/sheet/glass/phoronglass/attackby(obj/item/W, mob/user)
+	..()
+	if( istype(W, /obj/item/stack/rods) )
+		var/obj/item/stack/rods/V  = W
+		var/obj/item/stack/sheet/glass/phoronrglass/RG = new (user.loc)
+		RG.add_fingerprint(user)
+		RG.add_to_stacks(user)
+		V.use(1)
+		var/obj/item/stack/sheet/glass/G = src
+		src = null
+		var/replace = (user.get_inactive_hand()==G)
+		G.use(1)
+		if (!G && !RG && replace)
+			user.put_in_hands(RG)
+	else
+		return ..()
+
+/*
+ * Reinforced phoron glass sheets
+ */
+/obj/item/stack/sheet/glass/phoronrglass
+	name = "reinforced phoron glass"
+	desc = "Phoron glass which has been reinforced with metal rods."
+	singular_name = "reinforced phoron glass sheet"
+	icon_state = "sheet-phoronrglass"
+	matter = list("glass" = 7500,"metal" = 1875)
+
+	origin_tech = "materials=4;phorontech=2"
+	created_window = /obj/structure/window/phoronreinforced
+	is_reinforced = 1
+
+*/
+

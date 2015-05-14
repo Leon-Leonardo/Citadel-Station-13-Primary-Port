@@ -49,32 +49,32 @@ Please contact me on #coderbus IRC. ~Carnie x
 */
 
 //Human Overlays Indexes/////////
-#define SPECIES_LAYER			27		// mutantrace colors... these are on a seperate layer in order to prvent
-#define BODY_BEHIND_LAYER		26
-#define BODY_LAYER				25		//underwear, undershirts, socks, eyes, lips(makeup)
-#define BODY_ADJ_LAYER			24
-#define MUTATIONS_LAYER			23		//Tk headglows etc.
-#define AUGMENTS_LAYER			22
-#define DAMAGE_LAYER			21		//damage indicators (cuts and burns)
-#define UNIFORM_LAYER			20
-#define ID_LAYER				19
-#define SHOES_LAYER				18
-#define GLOVES_LAYER			17
-#define EARS_LAYER				16
-#define SUIT_LAYER				15
-#define GLASSES_LAYER			14
-#define BELT_LAYER				13		//Possible make this an overlay of somethign required to wear a belt?
-#define SUIT_STORE_LAYER		12
-#define BACK_LAYER				11
+#define TAIL_LAYER				27
+#define SPECIES_LAYER			26		// mutantrace colors... these are on a seperate layer in order to prvent
+#define BODY_BEHIND_LAYER		25
+#define BODY_LAYER				24		//underwear, undershirts, socks, eyes, lips(makeup)
+#define BODY_ADJ_LAYER			23
+#define MUTATIONS_LAYER			22		//Tk headglows etc.
+#define AUGMENTS_LAYER			21
+#define DAMAGE_LAYER			20		//damage indicators (cuts and burns)
+#define UNIFORM_LAYER			19
+#define ID_LAYER				18
+#define SHOES_LAYER				17
+#define GLOVES_LAYER			16
+#define EARS_LAYER				15
+#define SUIT_LAYER				14
+#define GLASSES_LAYER			13
+#define BELT_LAYER				12		//Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_STORE_LAYER		11
+#define BACK_LAYER				10
 #define HAIR_LAYER				9		//TODO: make part of head layer?
-#define FACEMASK_LAYER			10
-#define HEAD_LAYER				8
-#define HANDCUFF_LAYER			7
-#define LEGCUFF_LAYER			6
-#define L_HAND_LAYER			5
-#define R_HAND_LAYER			4		//Having the two hands seperate seems rather silly, merge them together? It'll allow for code to be reused on mobs with arbitarily many hands
-#define BODY_FRONT_LAYER		3
-#define TAIL_LAYER				2
+#define FACEMASK_LAYER			8
+#define HEAD_LAYER				7
+#define HANDCUFF_LAYER			6
+#define LEGCUFF_LAYER			5
+#define L_HAND_LAYER			4
+#define R_HAND_LAYER			3		//Having the two hands seperate seems rather silly, merge them together? It'll allow for code to be reused on mobs with arbitarily many hands
+#define BODY_FRONT_LAYER		2
 #define FIRE_LAYER				1		//If you're on fire
 #define TOTAL_LAYERS			27		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
 //////////////////////////////////
@@ -535,7 +535,7 @@ Please contact me on #coderbus IRC. ~Carnie x
 			var/obj/item/clothing/suit/S = wear_suit
 			standing.overlays	+= image("icon"='icons/effects/blood.dmi', "icon_state"="[S.blood_overlay_type]blood")
 
-	//src.update_hair()
+	src.update_hair()
 	//src.update_mutant_bodyparts()
 
 	apply_overlay(SUIT_LAYER)
@@ -572,7 +572,7 @@ Please contact me on #coderbus IRC. ~Carnie x
 			standing.overlays	+= image("icon"='icons/effects/blood.dmi', "icon_state"="maskblood")
 
 	//update_mutant_bodyparts()
-	update_hair()
+	//update_hair()
 
 	apply_overlay(FACEMASK_LAYER)
 
@@ -692,6 +692,7 @@ Please contact me on #coderbus IRC. ~Carnie x
 	return out
 
 //Human Overlays Indexes/////////
+#undef TAIL_LAYER
 #undef SPECIES_LAYER
 #undef BODY_LAYER
 #undef MUTATIONS_LAYER
@@ -707,7 +708,6 @@ Please contact me on #coderbus IRC. ~Carnie x
 #undef BELT_LAYER
 #undef SUIT_STORE_LAYER
 #undef BACK_LAYER
-#undef TAIL_LAYER
 #undef HAIR_LAYER
 #undef HEAD_LAYER
 #undef HANDCUFF_LAYER
