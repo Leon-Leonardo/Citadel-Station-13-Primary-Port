@@ -64,7 +64,7 @@ datum/preferences
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/mutant_color = "FFF"			//Mutant race skin color
 
-	//var/list/flavor_texts = list()
+	var/list/flavor_texts = list()
 
 
 	var/mutant_tail = "none"			//Narky stuff!
@@ -231,6 +231,8 @@ datum/preferences
 				dat += "<b>Undershirt:</b><BR><a href ='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a><BR>"
 				dat += "<b>Socks:</b><BR><a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a><BR>"
 				dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbaglist[backbag]]</a><BR>"
+
+				dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
 
 
 				dat += "<h3>Wings</h3>"
@@ -634,6 +636,30 @@ datum/preferences
 					SetChoices(user)
 			return 1
 
+		if(href_list["preference"] == "flavor_text")
+			switch(href_list["task"])
+				if("open")
+					SetFlavorText(user)
+					return
+				if("done")
+					user << browse(null, "window=flavor_text")
+					ShowChoices(user)
+					return
+				if("general")
+					var/msg = input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					if(msg != null)
+						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = html_encode(msg)
+					flavor_texts[href_list["task"]] = msg
+				else
+					var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					if(msg != null)
+						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = html_encode(msg)
+					flavor_texts[href_list["task"]] = msg
+			SetFlavorText(user)
+			return
+
 		switch(href_list["task"])
 			if("random")
 				switch(href_list["preference"])
@@ -1015,7 +1041,7 @@ datum/preferences
 
 
 
-/*
+
 /datum/preferences/proc/SetFlavorText(mob/user)
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
@@ -1054,4 +1080,145 @@ datum/preferences
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=flavor_text;size=430x300")
 	return
-	*/
+/*
+/datum/preferences/proc/process_link(mob/user, list/href_list)
+	if(!user)	return
+
+	if(!istype(user, /mob/new_player))	return
+
+	if(href_list["preference"] == "open_whitelist_forum")
+		if(config.forumurl)
+			user << link(config.forumurl)
+		else
+			user << "<span class='danger'>The forum URL is not set in the server configuration.</span>"
+			return
+
+	if(href_list["preference"] == "job")
+		/*switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+				ShowChoices(user)
+			if("reset")
+				ResetJobs()
+				SetChoices(user)
+			if("random")
+				if(alternate_option == GET_RANDOM_JOB || alternate_option == BE_ASSISTANT)
+					alternate_option += 1
+				else if(alternate_option == RETURN_TO_LOBBY)
+					alternate_option = 0
+				else
+					return 0
+				SetChoices(user)
+			if ("alt_title")
+				var/datum/job/job = locate(href_list["job"])
+				if (job)
+					var/choices = list(job.title) + job.alt_titles
+					var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
+					if(choice)
+						SetPlayerAltTitle(job, choice)
+						SetChoices(user)
+			if("input")
+				SetJob(user, href_list["text"])
+			else
+				SetChoices(user)
+		return 1
+	else if(href_list["preference"] == "skills")
+		if(href_list["cancel"])
+			user << browse(null, "window=show_skills")
+			ShowChoices(user)
+		else if(href_list["skillinfo"])
+			var/datum/skill/S = locate(href_list["skillinfo"])
+			var/HTML = "<b>[S.name]</b><br>[S.desc]"
+			user << browse(HTML, "window=\ref[user]skillinfo")
+		else if(href_list["setskill"])
+			var/datum/skill/S = locate(href_list["setskill"])
+			var/value = text2num(href_list["newvalue"])
+			skills[S.ID] = value
+			CalculateSkillPoints()
+			SetSkills(user)
+		else if(href_list["preconfigured"])
+			var/selected = input(user, "Select a skillset", "Skillset") as null|anything in SKILL_PRE
+			if(!selected) return
+
+			ZeroSkills(1)
+			for(var/V in SKILL_PRE[selected])
+				if(V == "field")
+					skill_specialization = SKILL_PRE[selected]["field"]
+					continue
+				skills[V] = SKILL_PRE[selected][V]
+			CalculateSkillPoints()
+
+			SetSkills(user)
+		else if(href_list["setspecialization"])
+			skill_specialization = href_list["setspecialization"]
+			CalculateSkillPoints()
+			SetSkills(user)
+		else
+			SetSkills(user)
+		return 1
+
+	else if (href_list["preference"] == "loadout")
+
+		if(href_list["task"] == "input")
+
+			var/list/valid_gear_choices = list()
+
+			for(var/gear_name in gear_datums)
+				var/datum/gear/G = gear_datums[gear_name]
+				if(G.whitelisted && !is_alien_whitelisted(user, G.whitelisted))
+					continue
+				valid_gear_choices += gear_name
+
+			var/choice = input(user, "Select gear to add: ") as null|anything in valid_gear_choices
+
+			if(choice && gear_datums[choice])
+
+				var/total_cost = 0
+
+				if(isnull(gear) || !islist(gear)) gear = list()
+
+				if(gear && gear.len)
+					for(var/gear_name in gear)
+						if(gear_datums[gear_name])
+							var/datum/gear/G = gear_datums[gear_name]
+							total_cost += G.cost
+
+				var/datum/gear/C = gear_datums[choice]
+				total_cost += C.cost
+				if(C && total_cost <= MAX_GEAR_COST)
+					gear += choice
+					user << "<span class='notice'>Added \the '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining).</span>"
+				else
+					user << "<span class='warning'>Adding \the '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points.</span>"
+
+		else if(href_list["task"] == "remove")
+			var/i_remove = text2num(href_list["gear"])
+			if(i_remove < 1 || i_remove > gear.len) return
+			gear.Cut(i_remove, i_remove + 1)
+
+		else if(href_list["task"] == "clear")
+			gear.Cut()*/
+
+	else if(href_list["preference"] == "flavor_text")
+		switch(href_list["task"])
+			if("open")
+				SetFlavorText(user)
+				return
+			if("done")
+				user << browse(null, "window=flavor_text")
+				ShowChoices(user)
+				return
+			if("general")
+				var/msg = input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+				if(msg != null)
+					msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+					msg = html_encode(msg)
+				flavor_texts[href_list["task"]] = msg
+			else
+				var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+				if(msg != null)
+					msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+					msg = html_encode(msg)
+				flavor_texts[href_list["task"]] = msg
+		SetFlavorText(user)
+		return*/

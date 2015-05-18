@@ -332,7 +332,7 @@
 				// Display a warning if the user mocks up
 				src << "<span class='warning'>You feel your [pocket_side] pocket being fumbled with!</span>"
 
-	/*
+
 	if (href_list["flavor_change"])
 		switch(href_list["flavor_change"])
 			if("done")
@@ -353,11 +353,12 @@
 				flavor_texts[href_list["flavor_change"]] = msg
 				set_flavor()
 				return
-				*/
+
 
 
 
 		..()
+		return
 
 
 ///////HUDs///////
@@ -584,6 +585,7 @@
 		if(head.flags_inv & HIDEEARS)
 			obscured |= slot_ears
 
+	flavor_text = flavor_texts["general"]
 	if(obscured.len > 0)
 		return obscured
 	else
