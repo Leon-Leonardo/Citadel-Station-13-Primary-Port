@@ -232,7 +232,7 @@ datum/preferences
 				dat += "<b>Socks:</b><BR><a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a><BR>"
 				dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbaglist[backbag]]</a><BR>"
 
-				dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
+				//dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
 
 
 				dat += "<h3>Wings</h3>"
@@ -1050,7 +1050,7 @@ datum/preferences
 	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=general'>General:</a> "
 	HTML += TextPreview(flavor_texts["general"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=head'>Head:</a> "
+	/*HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=head'>Head:</a> "
 	HTML += TextPreview(flavor_texts["head"])
 	HTML += "<br>"
 	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=face'>Face:</a> "
@@ -1073,7 +1073,7 @@ datum/preferences
 	HTML += "<br>"
 	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=feet'>Feet:</a> "
 	HTML += TextPreview(flavor_texts["feet"])
-	HTML += "<br>"
+	HTML += "<br>"*/
 	HTML += "<hr />"
 	HTML +="<a href='?src=\ref[user];preference=flavor_text;task=done'>\[Done\]</a>"
 	HTML += "<tt>"

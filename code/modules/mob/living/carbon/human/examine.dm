@@ -333,15 +333,12 @@
 						msg += "<a href='?src=\ref[src];hud=s;view_comment=1'>\[View comment log\]</a> "
 						msg += "<a href='?src=\ref[src];hud=s;add_comment=1'>\[Add comment\]</a>\n"
 
-	msg += "*---------*</span>"
+
 
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
 
-	/*msg += "*---------*</span>"
-	if (pose)
-		if( findtext(pose,".",lentext(pose)) == 0 && findtext(pose,"!",lentext(pose)) == 0 && findtext(pose,"?",lentext(pose)) == 0 )
-			pose = addtext(pose,".") //Makes sure all emotes end with a period.
-		msg += "\n[t_He] is [pose]"*/
+	msg += "*---------*</span>"
 
 	user << msg
+	return
 

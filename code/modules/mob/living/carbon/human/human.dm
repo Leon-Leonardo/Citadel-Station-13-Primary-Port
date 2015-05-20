@@ -358,7 +358,6 @@
 
 
 		..()
-		return
 
 
 ///////HUDs///////
@@ -585,7 +584,6 @@
 		if(head.flags_inv & HIDEEARS)
 			obscured |= slot_ears
 
-	flavor_text = flavor_texts["general"]
 	if(obscured.len > 0)
 		return obscured
 	else

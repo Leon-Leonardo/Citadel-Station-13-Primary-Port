@@ -1,8 +1,8 @@
 /world
 
 	hub = "Exadv1.spacestation13"
-	hub_password = "NOPASSWORDSORRY"
-	name = "Citadel Station 13"
+	hub_password = "kMZy3U5jJHSiBQjr"
+	name = "Citadel Station 13 - Custom Species - Light/Medium Roleplay - Events"
 
 /*
 This is for any host that would like their server to appear on the main SS13 hub.
