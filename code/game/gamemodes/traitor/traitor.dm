@@ -14,10 +14,10 @@
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")//AI", Currently out of the list as malf does not work for shit
 	required_players = 0
 	required_enemies = 1
-	recommended_enemies = 4
+	recommended_enemies = 1
 	reroll_friendly = 1
 
-	var/traitors_possible = 4 //hard limit on traitors if scaling is turned off
+	var/traitors_possible = 1 //hard limit on traitors if scaling is turned off
 	var/num_modifier = 0 // Used for gamemodes, that are a child of traitor, that need more than the usual.
 
 
@@ -129,12 +129,12 @@
 					destroy_objective.owner = traitor
 					destroy_objective.find_target()
 					traitor.objectives += destroy_objective
-				else if(prob(30))
+				else if(prob(40))
 					var/datum/objective/maroon/maroon_objective = new
 					maroon_objective.owner = traitor
 					maroon_objective.find_target()
 					traitor.objectives += maroon_objective
-				else
+				else if (prob(5))
 					var/datum/objective/assassinate/kill_objective = new
 					kill_objective.owner = traitor
 					kill_objective.find_target()

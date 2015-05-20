@@ -368,7 +368,7 @@
 	storage_slots = 7
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/humancube)
 
-/obj/item/weapon/storage/box/humancube/New()
+/obj/item/weapon/storage/box/humancubes/New()
 	..()
 	for(var/i = 1; i <= 5; i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/humancube/wrapped(src)

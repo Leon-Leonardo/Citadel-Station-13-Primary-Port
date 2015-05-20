@@ -81,7 +81,11 @@ var/datum/subsystem/events/SSevent
 		//if(SSshuttle.emergency.mode == SHUTTLE_DOCKED || SSshuttle.emergency.mode == SHUTTLE_CALL)
 		//	return
 		if(SSshuttle.emergency.mode < SHUTTLE_CALL)
-			SSshuttle.emergency.request(0.5, emergency_reason=" The station is under abnormal status, and the shuttle has been auto-called.")
+			SSshuttle.emergency.request(null, 1.5)
+			log_game("Round time limit reach. Shuttle has been auto-called.")
+			message_admins("The station is under abnormal status. The emergency shuttle has been called.")
+
+
 		//priority_announce("The emergency shuttle has been called due to the station's abnormal status. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.", null, 'sound/AI/shuttlecalled.ogg', "Priority")
 
 //selects a random event based on whether it can occur and it's 'weight'(probability)

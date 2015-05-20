@@ -61,6 +61,7 @@
 	var/forumurl = "http://tgstation13.org/phpBB/index.php" //default forums
 	var/rulesurl = "http://www.tgstation13.org/wiki/Rules" // default rules
 	var/githuburl = "https://www.github.com/tgstation/-tg-station" //default github
+	var/donationurl = "" //Paypal link
 
 	var/forbid_singulo_possession = 0
 	var/useircbot = 0
@@ -274,6 +275,8 @@
 					config.banappeals = value
 				if("wikiurl")
 					config.wikiurl = value
+				if("donationurl")
+					config.donationurl = value
 				if("forumurl")
 					config.forumurl = value
 				if("rulesurl")

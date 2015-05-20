@@ -2,14 +2,14 @@
 	name = "double agents"
 	config_tag = "double_agents"
 	restricted_jobs = list("Cyborg", "AI", "Captain", "Head of Personnel", "Chief Medical Officer", "Research Director", "Chief Engineer", "Head of Security") // Human / Minor roles only.
-	required_players = 15
+	required_players = 3
 	required_enemies = 2
-	recommended_enemies = 3
+	recommended_enemies = 2
 	reroll_friendly = 1
 
 	traitor_name = "double agent"
 
-	traitors_possible = 3 //hard limit on traitors if scaling is turned off
+	traitors_possible = 2 //hard limit on traitors if scaling is turned off
 	num_modifier = 1 // Six additional traitors
 
 	var/list/target_list = list()
