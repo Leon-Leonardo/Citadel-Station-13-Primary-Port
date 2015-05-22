@@ -34,4 +34,7 @@
 		if(DEAD)			msg += "<span class='deadsay'>It looks like its system is corrupted and requires a reset.</span>\n"
 	msg += "*---------*</span>"
 
+	if(print_flavor_text()) msg += "\n[print_flavor_text()]\n"
+
 	user << msg
+	return 0

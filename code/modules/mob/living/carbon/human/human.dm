@@ -333,7 +333,7 @@
 				// Display a warning if the user mocks up
 				src << "<span class='warning'>You feel your [pocket_side] pocket being fumbled with!</span>"
 
-	/*
+
 	if (href_list["flavor_change"])
 		switch(href_list["flavor_change"])
 			if("done")
@@ -354,7 +354,7 @@
 				flavor_texts[href_list["flavor_change"]] = msg
 				set_flavor()
 				return
-				*/
+
 
 
 

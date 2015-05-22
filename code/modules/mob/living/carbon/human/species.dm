@@ -1104,12 +1104,12 @@
 	if((H.status_flags & GODMODE))
 		return
 
-	var/datum/vore_organ/VD=H.get_last_organ_in()
+	//var/datum/vore_organ/VD=H.get_last_organ_in()
 
-	if(VD&&VD.digestion_factor)
-		H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head")
-	if(VD&&VD.tf_factor)
-		H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head")
+	//if(VD&&VD.digestion_factor)
+	//	H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head")
+	//if(VD&&VD.tf_factor)
+	//	H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head")
 
 	if(!breath || (breath.total_moles() == 0))
 		if(H.reagents.has_reagent("epinephrine"))

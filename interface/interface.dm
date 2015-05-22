@@ -35,6 +35,19 @@
 		src << "<span class='danger'>The rules URL is not set in the server configuration.</span>"
 	return
 
+/client/verb/donate()
+	set name = "Donate"
+	set desc = "Opens donation window."
+	set hidden = 1
+	if(config.donationurl)
+		if(alert("This will open up the donation page in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src	<< link(config.donationurl)
+	else
+		src << "<span class='danger'>The donation URL is not set in the server configuration.</span>"
+	return
+
+
 /client/verb/github()
 	set name = "Github"
 	set desc = "Visit Github"
