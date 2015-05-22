@@ -337,7 +337,7 @@
 	result = "dexalinp"
 	required_reagents = list("dexalin" = 1, "carbon" = 1, "iron" = 1)
 	result_amount = 3
-	required_temp = 250
+	required_temp = 400
 
 ////////////////////////////////// VIROLOGY //////////////////////////////////////////
 

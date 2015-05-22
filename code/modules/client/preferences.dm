@@ -636,6 +636,7 @@ datum/preferences
 					SetChoices(user)
 			return 1
 
+		/*
 		if(href_list["preference"] == "flavor_text")
 			switch(href_list["task"])
 				if("open")
@@ -658,7 +659,7 @@ datum/preferences
 						msg = html_encode(msg)
 					flavor_texts[href_list["task"]] = msg
 			SetFlavorText(user)
-			return
+			return*/
 
 		switch(href_list["task"])
 			if("random")
@@ -1041,7 +1042,7 @@ datum/preferences
 
 
 
-
+/*
 /datum/preferences/proc/SetFlavorText(mob/user)
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
@@ -1050,7 +1051,7 @@ datum/preferences
 	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=general'>General:</a> "
 	HTML += TextPreview(flavor_texts["general"])
 	HTML += "<br>"
-	/*HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=head'>Head:</a> "
+	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=head'>Head:</a> "
 	HTML += TextPreview(flavor_texts["head"])
 	HTML += "<br>"
 	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=face'>Face:</a> "
@@ -1073,14 +1074,14 @@ datum/preferences
 	HTML += "<br>"
 	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=feet'>Feet:</a> "
 	HTML += TextPreview(flavor_texts["feet"])
-	HTML += "<br>"*/
+	HTML += "<br>"
 	HTML += "<hr />"
 	HTML +="<a href='?src=\ref[user];preference=flavor_text;task=done'>\[Done\]</a>"
 	HTML += "<tt>"
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=flavor_text;size=430x300")
 	return
-/*
+
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
 
@@ -1094,7 +1095,7 @@ datum/preferences
 			return
 
 	if(href_list["preference"] == "job")
-		/*switch(href_list["task"])
+		switch(href_list["task"])
 			if("close")
 				user << browse(null, "window=mob_occupation")
 				ShowChoices(user)
@@ -1197,7 +1198,7 @@ datum/preferences
 			gear.Cut(i_remove, i_remove + 1)
 
 		else if(href_list["task"] == "clear")
-			gear.Cut()*/
+			gear.Cut()
 
 	else if(href_list["preference"] == "flavor_text")
 		switch(href_list["task"])

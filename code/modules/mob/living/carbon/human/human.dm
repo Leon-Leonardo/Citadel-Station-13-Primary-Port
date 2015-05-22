@@ -25,6 +25,7 @@
 	internal_organs += new /obj/item/organ/appendix
 	internal_organs += new /obj/item/organ/heart
 	internal_organs += new /obj/item/organ/brain
+	internal_organs += new /obj/item/organ/butt
 
 	// for spawned humans; overwritten by other code
 	ready_dna(src)
@@ -332,7 +333,7 @@
 				// Display a warning if the user mocks up
 				src << "<span class='warning'>You feel your [pocket_side] pocket being fumbled with!</span>"
 
-
+/*
 	if (href_list["flavor_change"])
 		switch(href_list["flavor_change"])
 			if("done")
@@ -352,7 +353,7 @@
 					msg = html_encode(msg)
 				flavor_texts[href_list["flavor_change"]] = msg
 				set_flavor()
-				return
+				return*/
 
 
 
