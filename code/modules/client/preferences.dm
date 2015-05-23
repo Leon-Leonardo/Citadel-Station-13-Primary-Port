@@ -232,7 +232,7 @@ datum/preferences
 				dat += "<b>Socks:</b><BR><a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a><BR>"
 				dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbaglist[backbag]]</a><BR>"
 
-				//dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
+				dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
 
 
 				dat += "<h3>Wings</h3>"
@@ -636,7 +636,7 @@ datum/preferences
 					SetChoices(user)
 			return 1
 
-		/*
+
 		if(href_list["preference"] == "flavor_text")
 			switch(href_list["task"])
 				if("open")
@@ -659,7 +659,7 @@ datum/preferences
 						msg = html_encode(msg)
 					flavor_texts[href_list["task"]] = msg
 			SetFlavorText(user)
-			return*/
+			return
 
 		switch(href_list["task"])
 			if("random")
@@ -1006,6 +1006,16 @@ datum/preferences
 			character.dna.cock=p_cock
 			character.dna.vagina=p_vagina
 
+		character.flavor_texts["general"] = flavor_texts["general"]
+		character.flavor_texts["head"] = flavor_texts["head"]
+		character.flavor_texts["face"] = flavor_texts["face"]
+		character.flavor_texts["eyes"] = flavor_texts["eyes"]
+		character.flavor_texts["torso"] = flavor_texts["torso"]
+		character.flavor_texts["arms"] = flavor_texts["arms"]
+		character.flavor_texts["hands"] = flavor_texts["hands"]
+		character.flavor_texts["legs"] = flavor_texts["legs"]
+		character.flavor_texts["feet"] = flavor_texts["feet"]
+
 		character.vore_banned_methods=vore_banned_methods
 		character.vore_extra_bans=vore_extra_bans
 		character.vore_ability=vore_ability
@@ -1042,7 +1052,7 @@ datum/preferences
 
 
 
-/*
+
 /datum/preferences/proc/SetFlavorText(mob/user)
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
@@ -1051,37 +1061,13 @@ datum/preferences
 	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=general'>General:</a> "
 	HTML += TextPreview(flavor_texts["general"])
 	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=head'>Head:</a> "
-	HTML += TextPreview(flavor_texts["head"])
-	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=face'>Face:</a> "
-	HTML += TextPreview(flavor_texts["face"])
-	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=eyes'>Eyes:</a> "
-	HTML += TextPreview(flavor_texts["eyes"])
-	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=torso'>Body:</a> "
-	HTML += TextPreview(flavor_texts["torso"])
-	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=arms'>Arms:</a> "
-	HTML += TextPreview(flavor_texts["arms"])
-	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=hands'>Hands:</a> "
-	HTML += TextPreview(flavor_texts["hands"])
-	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=legs'>Legs:</a> "
-	HTML += TextPreview(flavor_texts["legs"])
-	HTML += "<br>"
-	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=feet'>Feet:</a> "
-	HTML += TextPreview(flavor_texts["feet"])
-	HTML += "<br>"
 	HTML += "<hr />"
 	HTML +="<a href='?src=\ref[user];preference=flavor_text;task=done'>\[Done\]</a>"
 	HTML += "<tt>"
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=flavor_text;size=430x300")
 	return
-
+/*
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
 

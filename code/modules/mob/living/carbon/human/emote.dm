@@ -483,7 +483,7 @@ var/global/ticker.current_state = 3
 	set category = "IC"
 
 
-	/*
+
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
 	HTML += "<b>Update Flavour Text</b> <hr />"
@@ -519,4 +519,4 @@ var/global/ticker.current_state = 3
 	HTML +="<a href='?src=\ref[src];flavor_change=done'>\[Done\]</a>"
 	HTML += "<tt>"
 	src << browse(HTML, "window=flavor_changes;size=430x300")
-	*/
+
