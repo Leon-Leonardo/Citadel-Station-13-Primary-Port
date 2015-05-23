@@ -478,8 +478,10 @@ var/global/ticker.current_state = 3
 
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"
-	set desc = "Sets an extended description of your character's features."
+	//set desc = "Sets an extended description of your character's features."
+	set desc = "Not yet implemented :("
 	set category = "IC"
+
 
 
 	var/HTML = "<body>"
@@ -517,3 +519,4 @@ var/global/ticker.current_state = 3
 	HTML +="<a href='?src=\ref[src];flavor_change=done'>\[Done\]</a>"
 	HTML += "<tt>"
 	src << browse(HTML, "window=flavor_changes;size=430x300")
+

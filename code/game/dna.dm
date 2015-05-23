@@ -339,6 +339,51 @@
 		H.facial_hair_style = facial_hair_styles_list[deconstruct_block(getblock(structure, DNA_FACIAL_HAIR_STYLE_BLOCK), facial_hair_styles_list.len)]
 		H.hair_style = hair_styles_list[deconstruct_block(getblock(structure, DNA_HAIR_STYLE_BLOCK), hair_styles_list.len)]
 
+		var/mutantrace_c = deconstruct_block(getblock(structure, DNA_MUTANTRACE_BLOCK), species_list.len+1)
+		if(mutantrace_c<=species_list.len && kpcode_race_restricted(species_list[mutantrace_c])!=2)
+			C.dna.species=kpcode_race_get(species_list[mutantrace_c])
+		var/mutanttail_c = deconstruct_block(getblock(structure, DNA_MUTANTTAIL_BLOCK), mutant_tails.len+1)
+		if(mutanttail_c<=mutant_tails.len)
+			C.dna.mutanttail=mutant_tails[mutanttail_c]
+		else
+			C.dna.mutanttail=null
+		var/mutantwing_c = deconstruct_block(getblock(structure, DNA_MUTANTWING_BLOCK), mutant_wings.len+1)
+		if(mutantwing_c<=mutant_wings.len)
+			C.dna.mutantwing=mutant_wings[mutantwing_c]
+		else
+			C.dna.mutantwing=null
+
+		C.dna.wingcolor = sanitize_hexcolor(getblock(structure, DNA_WINGCOLOR_BLOCK))
+
+		var/colour_switch=deconstruct_block(getblock(structure, DNA_COLOR_SWITCH_BLOCK), DNA_COLOR_SWITCH_MAX+1)
+		colour_switch-=1
+		if(colour_switch&1)
+			C.dna.special_color[1]=sanitize_hexcolor(getblock(structure, DNA_COLOR_ONE_BLOCK))
+		else
+			C.dna.special_color[1]=null
+		if(colour_switch&2)
+			C.dna.special_color[2]=sanitize_hexcolor(getblock(structure, DNA_COLOR_TWO_BLOCK))
+		else
+			C.dna.special_color[2]=null
+		if(colour_switch&4)
+			C.dna.special_color[3]=sanitize_hexcolor(getblock(structure, DNA_COLOR_THR_BLOCK))
+		else
+			C.dna.special_color[3]=null
+
+		var/cock_block=deconstruct_block(getblock(structure, DNA_COCK_BLOCK), 4)
+		cock_block-=1
+		if(!(cock_block&1))
+			C.dna.cock["has"]=0
+		else if(!C.dna.cock["has"]&&(cock_block&1))
+			C.dna.cock["has"]=1
+
+		if(cock_block&2)
+			C.dna.vagina=1
+		else
+			C.dna.vagina=0
+
+		C.dna.taur=deconstruct_block(getblock(structure, DNA_TAUR_BLOCK), 2)-1
+
 		H.update_body()
 		H.update_hair()
 	return 1

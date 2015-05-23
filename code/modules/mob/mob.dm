@@ -522,11 +522,12 @@ var/list/slot_equipment_priority = list( \
 		msg = html_encode(msg)
 
 		flavor_text = msg
-
+/*
 /mob/proc/warn_flavor_changed()
 	if(flavor_text && flavor_text != "") // don't spam people that don't use it!
 		src << "<h2 class='alert'>OOC Warning:</h2>"
 		src << "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>"
+		*/
 
 /mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")

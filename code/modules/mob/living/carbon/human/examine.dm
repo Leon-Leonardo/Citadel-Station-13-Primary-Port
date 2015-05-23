@@ -340,5 +340,5 @@
 	msg += "*---------*</span>"
 
 	user << msg
-	return
+	return 0
 
